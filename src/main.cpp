@@ -68,12 +68,12 @@ int main(int argc, char *argv[])
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     // overwrite DApplication default value
     app.setAttribute(Qt::AA_ForceRasterWidgets, false);
-    app.setOrganizationName("deepin");
-    app.setApplicationName("deepin-movie");
+    app.setOrganizationName("GXDE");
+    app.setApplicationName("gxde-movie");
     app.setApplicationVersion(DMR_VERSION);
     app.setProductIcon(QPixmap(":/resources/icons/logo-big.svg"));
     app.setWindowIcon(QIcon(":/resources/icons/logo-big.svg"));
-    QString acknowledgementLink = "https://www.deepin.org/acknowledgments/deepin-movie";
+    QString acknowledgementLink = "https://gitee.com/GXDE-OS/gxde-movie-reborn";
     app.setApplicationAcknowledgementPage(acknowledgementLink);
 
     auto& clm = dmr::CommandLineManager::get();
@@ -85,9 +85,9 @@ int main(int argc, char *argv[])
     }
 
     app.loadTranslator();
-    app.setApplicationDisplayName(QObject::tr("Deepin Movie"));
+    app.setApplicationDisplayName(QObject::tr("GXDE Movie"));
     app.setApplicationDescription(QObject::tr(
-                "Deepin Movie is a well-designed and full-featured"
+                "GXDE Movie is a well-designed and full-featured"
                 " video player with simple borderless design. It supports local and"
                 " streaming media play with multiple video formats."));
 
