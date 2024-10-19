@@ -1,4 +1,4 @@
-/* 
+/*
  * (c) 2017, Deepin Technology Co., Ltd. <support@deepin.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -122,7 +122,7 @@ mpv_handle* MpvProxy::mpv_init()
     mpv_handle *h = mpv_create();
 
     bool composited = CompositingManager::get().composited();
-    
+
     switch(_debugLevel) {
         case DebugLevel::Info:
             mpv_request_log_messages(h, "info");
@@ -188,7 +188,7 @@ mpv_handle* MpvProxy::mpv_init()
 
             if (!disable) {
                 set_property(h, "opengl-hwdec-interop", interop.toUtf8().constData());
-                qDebug() << "-------- set opengl-hwdec-interop = " << interop 
+                qDebug() << "-------- set opengl-hwdec-interop = " << interop
                     << (forced.isEmpty() ? "[detected]" : "[forced]");
             } else {
                 qDebug() << "-------- opengl-hwdec-interop is disabled by user";
@@ -233,7 +233,7 @@ mpv_handle* MpvProxy::mpv_init()
         set_property(h, "save-position-on-quit", true);
     }
 #endif
-    
+
     //only to get notification without data
     mpv_observe_property(h, 0, "time-pos", MPV_FORMAT_NONE); //playback-time ?
     mpv_observe_property(h, 0, "pause", MPV_FORMAT_NONE);
@@ -244,7 +244,7 @@ mpv_handle* MpvProxy::mpv_init()
     mpv_observe_property(h, 0, "dwidth", MPV_FORMAT_NODE);
     mpv_observe_property(h, 0, "dheight", MPV_FORMAT_NODE);
 
-    // because of vpu, we need to implement playlist w/o mpv 
+    // because of vpu, we need to implement playlist w/o mpv
     //mpv_observe_property(h, 0, "playlist-pos", MPV_FORMAT_NONE);
     //mpv_observe_property(h, 0, "playlist-count", MPV_FORMAT_NONE);
     mpv_observe_property(h, 0, "core-idle", MPV_FORMAT_NODE);
@@ -298,7 +298,7 @@ void MpvProxy::pollingEndOfPlayback()
 
         while (_state != Backend::Stopped) {
             mpv_event* ev = mpv_wait_event(_handle, 0.005);
-            if (ev->event_id == MPV_EVENT_NONE) 
+            if (ev->event_id == MPV_EVENT_NONE)
                 continue;
 
             if (ev->event_id == MPV_EVENT_END_FILE) {
@@ -320,7 +320,7 @@ void MpvProxy::pollingStartOfPlayback()
 
         while (_state == Backend::Stopped) {
             mpv_event* ev = mpv_wait_event(_handle, 0.005);
-            if (ev->event_id == MPV_EVENT_NONE) 
+            if (ev->event_id == MPV_EVENT_NONE)
                 continue;
 
             if (ev->event_id == MPV_EVENT_FILE_LOADED) {
@@ -343,7 +343,7 @@ void MpvProxy::handle_mpv_events()
 {
     while (1) {
         mpv_event* ev = mpv_wait_event(_handle, 0.0005);
-        if (ev->event_id == MPV_EVENT_NONE) 
+        if (ev->event_id == MPV_EVENT_NONE)
             break;
 
         switch (ev->event_id) {
@@ -405,7 +405,7 @@ void MpvProxy::handle_mpv_events()
                         ConfigKnownKey::StartPos, 0);
 #endif
                 mpv_event_end_file *ev_ef = (mpv_event_end_file*)ev->data;
-                qDebug() << mpv_event_name(ev->event_id) << 
+                qDebug() << mpv_event_name(ev->event_id) <<
                     "reason " << ev_ef->reason;
                 setState(PlayState::Stopped);
                 break;
@@ -427,16 +427,16 @@ void MpvProxy::handle_mpv_events()
 void MpvProxy::processLogMessage(mpv_event_log_message* ev)
 {
     switch (ev->log_level) {
-        case MPV_LOG_LEVEL_WARN: 
+        case MPV_LOG_LEVEL_WARN:
             qWarning() << QString("%1: %2").arg(ev->prefix).arg(ev->text);
             break;
 
-        case MPV_LOG_LEVEL_ERROR: 
-        case MPV_LOG_LEVEL_FATAL: 
+        case MPV_LOG_LEVEL_ERROR:
+        case MPV_LOG_LEVEL_FATAL:
             qCritical() << QString("%1: %2").arg(ev->prefix).arg(ev->text);
             break;
 
-        case MPV_LOG_LEVEL_INFO: 
+        case MPV_LOG_LEVEL_INFO:
             qInfo() << QString("%1: %2").arg(ev->prefix).arg(ev->text);
             break;
 
@@ -481,7 +481,7 @@ void MpvProxy::processPropertyChange(mpv_event_property* ev)
         if (get_property(_handle, "pause").toBool()) {
             if (!idle)
                 setState(PlayState::Paused);
-            else 
+            else
                 set_property(_handle, "pause", false);
         } else {
             if (state() != PlayState::Stopped)
@@ -506,7 +506,7 @@ bool MpvProxy::loadSubtitle(const QFileInfo& fi)
         return false;
     }
 
-    // by settings this flag, we can match the corresponding sid change and save it 
+    // by settings this flag, we can match the corresponding sid change and save it
     // in the movie database
     _externalSubJustLoaded = true;
     return true;
@@ -762,7 +762,7 @@ void MpvProxy::play()
     set_property(_handle, "pause", _pauseOnStart);
 
 #ifndef _LIBDMR_
-    // by giving a period of time, movie will be loaded and auto-loaded subs are 
+    // by giving a period of time, movie will be loaded and auto-loaded subs are
     // all ready, then load extra subs from db
     // this keeps order of subs
     QTimer::singleShot(100, [this]() {
@@ -820,7 +820,7 @@ void MpvProxy::burstScreenshot()
 
     int d = duration() / 15;
 
-	std::random_device rd;
+    std::random_device rd;
     std::mt19937 g(rd());
     std::uniform_int_distribution<int> uniform_dist(0, d);
     _burstPoints.clear();
@@ -911,7 +911,7 @@ void MpvProxy::stepBurstScreenshot()
     int tries = 10;
     while (tries) {
         mpv_event* ev = mpv_wait_event(_handle, 0.005);
-        if (ev->event_id == MPV_EVENT_NONE) 
+        if (ev->event_id == MPV_EVENT_NONE)
             continue;
 
         if (ev->event_id == MPV_EVENT_PLAYBACK_RESTART) {

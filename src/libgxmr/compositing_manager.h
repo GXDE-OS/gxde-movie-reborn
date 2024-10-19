@@ -76,7 +76,7 @@ class CompositingManager: public QObject {
         void overrideCompositeMode(bool useCompositing);
 
         // this actually means opengl rendering is capable
-        bool composited() const { return _composited; }
+        bool composited() const { return false;return _composited; }
         Platform platform() const { return _platform; }
 
         PlayerOptionList getProfile(const QString& name);
