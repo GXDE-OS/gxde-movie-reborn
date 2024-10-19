@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 
 
     app.setWindowIcon(QIcon(":/resources/icons/logo.svg"));
-    app.setApplicationDisplayName(QObject::tr("Deepin Movie"));
+    app.setApplicationDisplayName(QObject::tr("GXDE Movie"));
     app.setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);
 
     MovieConfiguration::get().init();
