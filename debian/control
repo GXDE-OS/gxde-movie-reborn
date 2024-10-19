@@ -1,7 +1,7 @@
-Source: deepin-movie-reborn
+Source: gxde-movie-reborn
 Section: libdevel
 Priority: extra
-Maintainer: Deepin Packages Builder <packages@deepin.com>
+Maintainer: gfdgd xi <3025613752@qq.com>
 Build-Depends: debhelper, cmake, pkg-config, qttools5-dev-tools,
                 libqt5svg5-dev, qtmultimedia5-dev, qttools5-dev,
                 libqt5x11extras5-dev, libdtkcore-bin, libdtkwidget2-dev,
@@ -13,23 +13,23 @@ Build-Depends: debhelper, cmake, pkg-config, qttools5-dev-tools,
                 libavcodec-dev, libavformat-dev,libavutil-dev,
                 libpulse-dev, libssl-dev, libdvdnav-dev
 Standards-Version: 3.9.8
-Homepage: https://www.deepin.org/
+Homepage: https://gitee.com/GXDE-OS/gxde-movie-reborn
 
-Package: deepin-movie
+Package: gxde-movie
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: movie player
- movie player for deepin desktop environment.
+ movie player for GXDE desktop environment.
 
-Package: libdmr
+Package: libgxmr
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
 Description: movie player widget library 
- deepin movie player widget library
+ GXDE movie player widget library
 
-Package: libdmr-dev
+Package: libgxmr-dev
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libdmr(=${binary:Version})
 Description: movie player widget library development headers
- deepin movie player widget library development headers
+ GXDE movie player widget library development headers

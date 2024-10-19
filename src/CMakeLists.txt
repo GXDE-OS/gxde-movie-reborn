@@ -1,9 +1,9 @@
 set(CMAKE_AUTOMOC ON)
-set(CMD_NAME deepin-movie)
+set(CMD_NAME gxde-movie)
 
 set(PROJECT_INCLUDE ${PROJECT_SOURCE_DIR}/src/widgets
     ${PROJECT_SOURCE_DIR}/src/common
-    ${PROJECT_SOURCE_DIR}/src/libdmr)
+    ${PROJECT_SOURCE_DIR}/src/libgxmr)
 
 include_directories(${CMAKE_INCLUDE_CURRENT_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -20,14 +20,8 @@ find_package(Dtk REQUIRED Core Widget)
 pkg_check_modules(Mpv REQUIRED IMPORTED_TARGET mpv)
 pkg_check_modules(Xcb REQUIRED IMPORTED_TARGET xcb xcb-aux
     xcb-proto xcb-ewmh xcb-shape)
-pkg_check_modules(AV REQUIRED IMPORTED_TARGET
-    libavformat
-    libavutil
-    libavcodec
-    libavfilter
-    libswresample
-    libpostproc
-    libavdevice)
+pkg_check_modules(AV REQUIRED IMPORTED_TARGET libavformat
+    libavutil libavcodec)
 # IMPORTED_TARGET failed to work for some of libs under flatpak env
 pkg_check_modules(Other REQUIRED libffmpegthumbnailer
     libpulse libpulse-simple openssl dvdnav)
@@ -35,7 +29,7 @@ pkg_check_modules(Other REQUIRED libffmpegthumbnailer
 qt5_add_resources(RCS resources.qrc)
 
 
-file(GLOB_RECURSE SRCS LIST_DIRECTORIES false common/*.cpp widgets/*.cpp libdmr/*.cpp)
+file(GLOB_RECURSE SRCS LIST_DIRECTORIES false common/*.cpp widgets/*.cpp libgxmr/*.cpp)
 list(APPEND SRCS main.cpp)
 
 # mpv backend
@@ -78,11 +72,11 @@ install(TARGETS ${CMD_NAME} DESTINATION bin)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/translations
     DESTINATION share/${CMD_NAME}
     FILES_MATCHING PATTERN "*.qm")
-install(FILES ${PROJECT_SOURCE_DIR}/src/deepin-movie.desktop
+install(FILES ${PROJECT_SOURCE_DIR}/src/gxde-movie.desktop
     DESTINATION share/applications)
 install(FILES ${PROJECT_SOURCE_DIR}/src/resources/icons/logo-big.svg
     DESTINATION share/icons/hicolor/scalable/apps
-    RENAME deepin-movie.svg)
+    RENAME gxde-movie.svg)
 
-add_subdirectory(libdmr)
+add_subdirectory(libgxmr)
 add_subdirectory(test)

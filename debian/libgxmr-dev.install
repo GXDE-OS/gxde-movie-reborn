@@ -1,0 +1,3 @@
+usr/include/libgxmr/*.h
+usr/lib/*/libgxmr.so
+usr/lib/*/pkgconfig/libgxmr.pc

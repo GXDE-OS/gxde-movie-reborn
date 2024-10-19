@@ -122,4 +122,4 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-#include "dmr_test.moc"
+#include "gxmr_test.moc"

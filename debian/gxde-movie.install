@@ -1,0 +1,4 @@
+usr/bin/gxde-movie
+usr/share/applications/gxde-movie.desktop
+usr/share/gxde-movie/translations/*.qm
+usr/share/icons/*

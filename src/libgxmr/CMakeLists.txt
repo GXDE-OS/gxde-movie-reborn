@@ -1,7 +1,7 @@
-project(libdmr VERSION 0.1.0)
+project(libgxmr VERSION 0.1.0)
 
 set(CMAKE_AUTOMOC ON)
-set(CMD_NAME dmr)
+set(CMD_NAME gxmr)
 
 add_definitions(-D_LIBDMR_)
 
@@ -25,7 +25,7 @@ target_link_libraries(${CMD_NAME} ${DtkWidget_LIBRARIES} Qt5::Widgets Qt5::Concu
 
 include(GNUInstallDirs)
 
-configure_file(libdmr.pc.in ${PROJECT_BINARY_DIR}/libdmr.pc @ONLY)
+configure_file(libgxmr.pc.in ${PROJECT_BINARY_DIR}/libgxmr.pc @ONLY)
 
 install(TARGETS ${CMD_NAME} DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES
@@ -40,6 +40,6 @@ install(FILES
     opengl_cb.h
     online_sub.h
     qthelper.hpp
-    DESTINATION include/libdmr)
+    DESTINATION include/libgxmr)
 
-install(FILES ${PROJECT_BINARY_DIR}/libdmr.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+install(FILES ${PROJECT_BINARY_DIR}/libgxmr.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

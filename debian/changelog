@@ -1,4 +1,10 @@
-deepin-movie-reborn (3.0.0-1) unstable; urgency=low
+gxde-movie-reborn (3.3.0) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- gfdgd_xi <3025613752@qq.com>  Sat, 19 Oct 2024 15:57:04 +0800
+
+gxde-movie-reborn (3.0.0-1) unstable; urgency=low
 
   * First release.
 
