@@ -31,9 +31,11 @@
 #define _DMR_MPV_GLWIDGET_H 
 
 #include <QtWidgets>
-#include <mpv/opengl_cb.h>
+//#include <mpv/opengl_cb.h>
+#include "opengl_cb.h"
 #undef Bool
-#include <mpv/qthelper.hpp>
+//#include <mpv/qthelper.hpp>
+#include "qthelper.hpp"
 
 namespace dmr {
 class MpvGLWidget : public QOpenGLWidget

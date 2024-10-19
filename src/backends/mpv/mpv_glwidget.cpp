@@ -169,20 +169,20 @@ namespace dmr {
     void MpvGLWidget::onFrameSwapped()
     {
         //qDebug() << "frame swapped";
-        mpv_opengl_cb_report_flip(_gl_ctx, 0);
+        //mpv_opengl_cb_report_flip(_gl_ctx, 0);
     }
 
     MpvGLWidget::MpvGLWidget(QWidget *parent, mpv::qt::Handle h)
         :QOpenGLWidget(parent), _handle(h) { 
         setUpdateBehavior(QOpenGLWidget::NoPartialUpdate);
 
-        _gl_ctx = (mpv_opengl_cb_context*) mpv_get_sub_api(h, MPV_SUB_API_OPENGL_CB);
+        //_gl_ctx = (mpv_opengl_cb_context*) mpv_get_sub_api(h, MPV_SUB_API_OPENGL_CB);
         if (!_gl_ctx) {
             std::runtime_error("can not init mpv gl");
         }
-        mpv_opengl_cb_set_update_callback(_gl_ctx, gl_update_callback, this);
-        connect(this, &QOpenGLWidget::frameSwapped, 
-                this, &MpvGLWidget::onFrameSwapped, Qt::DirectConnection);
+        //mpv_opengl_cb_set_update_callback(_gl_ctx, gl_update_callback, this);
+        /*connect(this, &QOpenGLWidget::frameSwapped,
+                this, &MpvGLWidget::onFrameSwapped, Qt::DirectConnection);*/
 
         //auto fmt = QSurfaceFormat::defaultFormat();
         //fmt.setAlphaBufferSize(8);
@@ -217,12 +217,12 @@ namespace dmr {
 
         if (_fbo) delete _fbo;
 
-        if (_gl_ctx)
-            mpv_opengl_cb_set_update_callback(_gl_ctx, NULL, NULL);
+        //if (_gl_ctx)
+        //    mpv_opengl_cb_set_update_callback(_gl_ctx, NULL, NULL);
         // Until this call is done, we need to make sure the player remains
         // alive. This is done implicitly with the mpv::qt::Handle instance
         // in this class.
-        mpv_opengl_cb_uninit_gl(_gl_ctx);
+        //mpv_opengl_cb_uninit_gl(_gl_ctx);
         doneCurrent();
     }
 
@@ -342,8 +342,8 @@ namespace dmr {
 #endif
 #endif
 
-        if (mpv_opengl_cb_init_gl(_gl_ctx, "GL_MP_MPGetNativeDisplay", get_proc_address, NULL) < 0)
-            throw std::runtime_error("could not initialize OpenGL");
+        //if (mpv_opengl_cb_init_gl(_gl_ctx, "GL_MP_MPGetNativeDisplay", get_proc_address, NULL) < 0)
+        //    throw std::runtime_error("could not initialize OpenGL");
     }
 
     void MpvGLWidget::updateMovieFbo()
@@ -571,13 +571,13 @@ namespace dmr {
             QSize scaled = size() * dpr;
 
             if (!_doRoundedClipping) {
-                mpv_opengl_cb_draw(_gl_ctx, defaultFramebufferObject(), scaled.width(), -scaled.height());
+                //mpv_opengl_cb_draw(_gl_ctx, defaultFramebufferObject(), scaled.width(), -scaled.height());
             } else {
                 f->glEnable(GL_BLEND);
                 f->glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                 _fbo->bind();
-                mpv_opengl_cb_draw(_gl_ctx, _fbo->handle(), scaled.width(), -scaled.height());
+                //mpv_opengl_cb_draw(_gl_ctx, _fbo->handle(), scaled.width(), -scaled.height());
                 _fbo->release();
 
                 {

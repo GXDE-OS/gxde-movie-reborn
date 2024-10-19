@@ -20,8 +20,14 @@ find_package(Dtk REQUIRED Core Widget)
 pkg_check_modules(Mpv REQUIRED IMPORTED_TARGET mpv)
 pkg_check_modules(Xcb REQUIRED IMPORTED_TARGET xcb xcb-aux
     xcb-proto xcb-ewmh xcb-shape)
-pkg_check_modules(AV REQUIRED IMPORTED_TARGET libavformat
-    libavutil libavcodec)
+pkg_check_modules(AV REQUIRED IMPORTED_TARGET
+    libavformat
+    libavutil
+    libavcodec
+    libavfilter
+    libswresample
+    libpostproc
+    libavdevice)
 # IMPORTED_TARGET failed to work for some of libs under flatpak env
 pkg_check_modules(Other REQUIRED libffmpegthumbnailer
     libpulse libpulse-simple openssl dvdnav)

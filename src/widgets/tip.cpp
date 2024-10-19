@@ -36,6 +36,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+#include <QPainterPath>
 
 #include <DUtil>
 #include <dthememanager.h>

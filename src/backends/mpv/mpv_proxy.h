@@ -34,7 +34,8 @@
 #include <player_engine.h>
 #include <xcb/xproto.h>
 #undef Bool
-#include <mpv/qthelper.hpp>
+//#include <mpv/qthelper.hpp>
+#include "qthelper.hpp"
 
 namespace dmr {
 using namespace mpv::qt;

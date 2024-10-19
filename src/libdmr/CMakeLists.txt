@@ -37,7 +37,9 @@ install(FILES
     compositing_manager.h
     dvd_utils.h
     utils.h
+    opengl_cb.h
     online_sub.h
+    qthelper.hpp
     DESTINATION include/libdmr)
 
 install(FILES ${PROJECT_BINARY_DIR}/libdmr.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
