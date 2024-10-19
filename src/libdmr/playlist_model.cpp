@@ -41,8 +41,9 @@ extern "C" {
 #include <libavformat/avformat.h>
 #include <libavutil/dict.h>
 #include <libavutil/avutil.h>
-}
 #include <libavcodec/avcodec.h>
+}
+
 
 #include <random>
 
@@ -63,9 +64,9 @@ static int open_codec_context(int *stream_idx,
     stream_index = ret;
     st = fmt_ctx->streams[stream_index];
 #if LIBAVFORMAT_VERSION_MAJOR >= 57 && LIBAVFORMAT_VERSION_MINOR <= 25
-    //*dec_ctx = st->codec;
-    /*dec_ctx = st->codecpar;
-    dec = avcodec_find_decoder((*dec_ctx)->codec_id);*/
+    // 新版的 ffmpeg 不再提供 st->codec,所以需要使用 avcodec_parameters_to_context 进行类型转换
+    *dec_ctx = avcodec_alloc_context3(NULL);  // 以解决空指针导致崩溃的问题
+    avcodec_parameters_to_context(*dec_ctx, st->codecpar);
 #else
     /* find decoder for the stream */
     dec = avcodec_find_decoder(st->codecpar->codec_id);
