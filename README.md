@@ -39,5 +39,5 @@ $ make
 $ sudo make install
 ```
 
-When install complete, the executable binary file is placed into `/usr/bin/deepin-movie`.
+When install complete, the executable binary file is placed into `/usr/bin/gxde-movie`.
 
