@@ -2,6 +2,8 @@
 
 GXDE movie is GXDE Desktop Environment Movie Player.
 
+It also provide libgxmr to provide video play service for dde-file-manager/dde-desktop
+
 ## Dependencies
 
 ### Build dependencies
