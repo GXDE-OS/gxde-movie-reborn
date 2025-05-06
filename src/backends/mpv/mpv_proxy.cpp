@@ -752,10 +752,10 @@ void MpvProxy::play()
     }
 #endif
 
-    if (opts.size()) {
-        //opts << "sub-auto=fuzzy";
-        args << "replace" << opts.join(',');
-    }
+    // if (opts.size()) {
+    //     //opts << "sub-auto=fuzzy";
+    //     args << "replace" << opts.join(',');
+    // }
 
     qDebug () << args;
     command(_handle, args);
