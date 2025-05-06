@@ -1,6 +1,6 @@
-gxde-movie-reborn (3.3.0-1) UNRELEASED; urgency=medium
+gxde-movie-reborn (3.3.0-2) UNRELEASED; urgency=medium
 
-  * Non-maintainer upload.
+  * fix: Can not play anything on GXDE 2025, special thank to dependon
 
  -- gfdgd_xi <3025613752@qq.com>  Sat, 19 Oct 2024 15:57:04 +0800
 
