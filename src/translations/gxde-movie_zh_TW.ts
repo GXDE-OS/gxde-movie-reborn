@@ -5,18 +5,18 @@
     <name>QObject</name>
     <message>
         <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="120"/>
         <source>GXDE Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE 電影</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="89"/>
         <source>GXDE Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE 电影是一款設計精良、功能全面的視頻播放器，無邊框簡潔設計，支持多種視頻格式本地播放和串流媒體播放。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="120"/>
         <source>Deepin Movie</source>
-        <translation>Deepin 電影</translation>
+        <translation type="vanished">Deepin 電影</translation>
     </message>
     <message>
         <source>Deepin Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
