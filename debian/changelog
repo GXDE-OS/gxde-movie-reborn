@@ -2,8 +2,8 @@ gxde-movie-reborn (3.3.1) UNRELEASED; urgency=medium
 
   [ zeqi ]
   * Improve support for Simplified Chinese, Traditional Chinese (HK), and Traditional Chinese (TW)
-  * fix: A problem of build
-  * fix: About the interface version number being incorrect
+  * fix: A build problem in the newest GXDE 25
+  * fix: Incorrect interface version number
 
  -- zeqi <a202128502@163.com>  Tue, 10 Feb 2026 23:31:56 +0800
 
