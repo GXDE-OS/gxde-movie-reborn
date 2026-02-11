@@ -5,18 +5,18 @@
     <name>QObject</name>
     <message>
         <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="120"/>
         <source>GXDE Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE 影院</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="89"/>
         <source>GXDE Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE 影院是一款设计精良、功能全面的视频播放器，无边框简洁设计，支持多种视频格式本地播放和流媒体播放。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="120"/>
         <source>Deepin Movie</source>
-        <translation>深度影院</translation>
+        <translation type="vanished">深度影院</translation>
     </message>
     <message>
         <source>Deepin Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
@@ -45,7 +45,7 @@
     <message>
         <location filename="../common/settings_translation.cpp" line="6"/>
         <source>Clear playlist when exit</source>
-        <translation>退出深度影院时清空播放列表</translation>
+        <translation>退出GXDE 影院时清空播放列表</translation>
     </message>
     <message>
         <location filename="../common/settings_translation.cpp" line="7"/>
@@ -55,7 +55,7 @@
     <message>
         <location filename="../common/settings_translation.cpp" line="8"/>
         <source>Open a new player for each file played</source>
-        <translation>允许同时运行多个深度影院</translation>
+        <translation>允许同时运行多个GXDE 影院</translation>
     </message>
     <message>
         <location filename="../common/settings_translation.cpp" line="9"/>
