@@ -31,6 +31,12 @@
 #define _DMR_MPV_GLWIDGET_H 
 
 #include <QtWidgets>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QtOpenGL/QtOpenGL>
+#include <QOpenGLWidget>
+
+#endif
 //#include <mpv/opengl_cb.h>
 #include "opengl_cb.h"
 #undef Bool

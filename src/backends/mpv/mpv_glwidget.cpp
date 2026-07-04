@@ -32,7 +32,11 @@
 #include "mpv_proxy.h"
 #include "mpv_glwidget.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QtGui/private/qtx11extras_p.h>
+#else
 #include <QtX11Extras/QX11Info>
+#endif
 
 #include <dthememanager.h>
 #include <DApplication>

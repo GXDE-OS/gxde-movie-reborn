@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include/libgxmr-qt6
+
+Name: gxmr-qt6
+Description: deepin movie player widget development file (Qt6 build)
+Version: @PROJECT_VERSION@
+Libs: -lgxmr-qt6
+Cflags: -I${includedir}
+Requires: Qt6Widgets Qt6Concurrent Qt6Network gl dtk2widget dtk6core

@@ -2,8 +2,27 @@
 export QT_SELECT=5
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
+QT6_BUILDDIR = obj-qt6
+QT6_SRCDIR = src/libgxmr-qt6
+
 %:
 	dh $@ --parallel
 
 override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_INSTALL_PREFIX=/usr -DUSE_DXCB=off -DCMAKE_BUILD_TYPE=RelWithDebInfo
+	cmake -S $(QT6_SRCDIR) -B $(QT6_BUILDDIR) \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib/$(DEB_HOST_MULTIARCH) \
+		-DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+override_dh_auto_build:
+	dh_auto_build
+	cmake --build $(QT6_BUILDDIR) --parallel
+
+override_dh_auto_install:
+	dh_auto_install
+	DESTDIR=$(CURDIR)/debian/tmp cmake --install $(QT6_BUILDDIR)
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf $(QT6_BUILDDIR)

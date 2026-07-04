@@ -11,7 +11,9 @@ Build-Depends: debhelper, cmake, pkg-config, qttools5-dev-tools,
                 libxcb-shape0-dev,libxcb-ewmh-dev, xcb-proto,
                 x11proto-record-dev, libxtst-dev,
                 libavcodec-dev, libavformat-dev,libavutil-dev,
-                libpulse-dev, libssl-dev, libdvdnav-dev
+                libpulse-dev, libssl-dev, libdvdnav-dev,
+                qt6-base-dev, qt6-base-private-dev,
+                libdtk2widget6-dev, libdtk6core-dev
 Standards-Version: 3.9.8
 Homepage: https://gitee.com/GXDE-OS/gxde-movie-reborn
 
@@ -33,3 +35,14 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libgxmr(=${binary:Version})
 Description: movie player widget library development headers
  GXDE movie player widget library development headers
+
+Package: libgxmr-qt6
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Description: libgxmr built against Qt6.
+
+Package: libgxmr-qt6-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgxmr-qt6(=${binary:Version})
+Description: libgxmr-qt6-dev built against Qt6.
