@@ -662,8 +662,8 @@
 <context>
     <name>dmr::MpvProxy</name>
     <message>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1034"/>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1052"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056"/>
         <source>[internal]</source>
         <translation>[內嵌]</translation>
     </message>

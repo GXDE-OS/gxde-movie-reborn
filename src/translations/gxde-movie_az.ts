@@ -5,6 +5,7 @@
     <name>QObject</name>
     <message>
         <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="120"/>
         <source>GXDE Movie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14,9 +15,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="120"/>
         <source>Deepin Movie</source>
-        <translation>Deepin Film</translation>
+        <translation type="vanished">Deepin Film</translation>
     </message>
     <message>
         <location filename="../common/mainwindow.cpp" line="116"/>
@@ -639,8 +639,8 @@
 <context>
     <name>dmr::MpvProxy</name>
     <message>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1034"/>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1052"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056"/>
         <source>[internal]</source>
         <translation type="unfinished"></translation>
     </message>

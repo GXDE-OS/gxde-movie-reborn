@@ -5,6 +5,7 @@
     <name>QObject</name>
     <message>
         <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="120"/>
         <source>GXDE Movie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14,9 +15,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="120"/>
         <source>Deepin Movie</source>
-        <translation>Deepin Movie</translation>
+        <translation type="vanished">Deepin Movie</translation>
     </message>
     <message>
         <source>Deepin Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
@@ -663,8 +663,8 @@ Localizzazione italiana a cura di Carofano Massimo Antonio.</translation>
 <context>
     <name>dmr::MpvProxy</name>
     <message>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1034"/>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1052"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056"/>
         <source>[internal]</source>
         <translation>[interno]</translation>
     </message>
