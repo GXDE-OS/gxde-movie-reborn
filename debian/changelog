@@ -1,10 +1,13 @@
-gxde-movie-reborn (3.4.0-1) UNRELEASED; urgency=medium
+gxde-movie-reborn (4.0.0) UNRELEASED; urgency=medium
 
   [ CharOfString ]
   * Added libgxmr-qt6, this is the modification package libgxmr that builds against Qt6.
   * Original Qt5 version of libgxmr is preserved and the two packages could be installed together.
 
- -- CharOfString <markus_verify@126.com>  Sat, 04 Jul 2026 17:05:08 +0800
+  [ gfdgd_xi ]
+  * GXDE 视频播放器 Qt6 迁移
+
+ -- gfdgd_xi <3025613752@qq.com>  Mon, 06 Jul 2026 11:10:30 +0800
 
 gxde-movie-reborn (3.3.1) UNRELEASED; urgency=medium
 

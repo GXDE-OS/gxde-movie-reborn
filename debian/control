@@ -13,7 +13,8 @@ Build-Depends: debhelper, cmake, pkg-config, qttools5-dev-tools,
                 libavcodec-dev, libavformat-dev,libavutil-dev,
                 libpulse-dev, libssl-dev, libdvdnav-dev,
                 qt6-base-dev, qt6-base-private-dev,
-                libdtk2widget6-dev, libdtk6core-dev
+                libdtk2widget6-dev, libdtk6core-dev, libqt6sql6-sqlite,
+		qt6-l10n-tools, qt6-tools-dev
 Standards-Version: 3.9.8
 Homepage: https://gitee.com/GXDE-OS/gxde-movie-reborn
 
