@@ -597,14 +597,7 @@ MainWindow::MainWindow(QWidget *parent)
     _playlist = new PlaylistWidget(this, _engine);
     _playlist->hide();
 
-    _playState = new DImageButton(this);
-    _playState->setScaledContents(true);
-    _playState->setObjectName("PlayState");
-    //_playState->setFixedSize(128, 128);
-    _playState->setVisible(false);
-    connect(_playState, &DImageButton::clicked, [=]() {
-        requestAction(ActionFactory::TogglePause, false, {}, true);
-    });
+
 
     _progIndicator = new MovieProgressIndicator(this);
     _progIndicator->setVisible(false);
@@ -1030,6 +1023,7 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState e)
 
 void MainWindow::startPlayStateAnimation(bool play)
 {
+    if (!_playState) return;
     auto r = QRect(QPoint(0, 0), QSize(128, 128));
     r.moveCenter(rect().center());
 
@@ -1088,7 +1082,7 @@ void MainWindow::startPlayStateAnimation(bool play)
 
 void MainWindow::animatePlayState()
 {
-    if (_miniMode) {
+    if (!_playState || _miniMode) {
         return;
     }
 
@@ -1107,6 +1101,8 @@ void MainWindow::animatePlayState()
 
 void MainWindow::syncPlayState()
 {
+    if (!_playState) return;
+
     auto r = QRect(QPoint(0, 0), QSize(128, 128));
     r.moveCenter(rect().center());
     _playState->move(r.topLeft());
@@ -1837,7 +1833,7 @@ void MainWindow::requestAction(ActionFactory::ActionKind kd, bool fromUI,
             if (_engine->state() == PlayerEngine::Idle && isShortcut) {
                 requestAction(ActionFactory::StartPlay);
             } else {
-                if (_engine->state() == PlayerEngine::Paused && _playState->isVisible()) {
+                if (_engine->state() == PlayerEngine::Paused && _playState && _playState->isVisible()) {
                     startPlayStateAnimation(true);
                     QTimer::singleShot(160, [=]() { _engine->pauseResume(); });
                 } else {
@@ -2469,7 +2465,7 @@ void MainWindow::mousePressEvent(QMouseEvent *ev)
     if (qApp->focusWindow() == 0) return;
     if (ev->buttons() == Qt::LeftButton) {
         _mousePressed = true;
-        if (_playState->isVisible()) {
+        if (_playState && _playState->isVisible()) {
             //_playState->setState(DImageButton::Press);
             QMouseEvent me(QEvent::MouseButtonPress, ev->position(), ev->globalPosition(), ev->button(), ev->buttons(), ev->modifiers());
             qApp->sendEvent(_playState, &me);
@@ -2518,7 +2514,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
     if (qApp->focusWindow() == 0 || !_mousePressed) return;
 
     _mousePressed = false;
-    if (_playState->isVisible()) {
+    if (_playState && _playState->isVisible()) {
         //QMouseEvent me(QEvent::MouseButtonRelease, {}, ev->button(), ev->buttons(), ev->modifiers());
         //qApp->sendEvent(_playState, &me);
         _playState->setState(DImageButton::Normal);
