@@ -30,7 +30,7 @@
 #include "utility.h"
 
 #include <QtWidgets>
-#include <QtX11Extras/QX11Info>
+#include <QtGui/private/qtx11extras_p.h>
 
 #include <xcb/shape.h>
 #include <xcb/xproto.h>
@@ -154,7 +154,7 @@ void Utility::setShapePath(quint32 WId, const QPainterPath &path, bool onlyInput
     QVector<xcb_rectangle_t> rectangles;
 
     foreach(const QPolygonF &polygon, path.toFillPolygons()) {
-        foreach(const QRect &area, QRegion(polygon.toPolygon()).rects()) {
+        for (const QRect &area : QRegion(polygon.toPolygon())) {
             xcb_rectangle_t rectangle;
 
             rectangle.x = area.x();
@@ -218,7 +218,7 @@ QVector<xcb_rectangle_t> Utility::qregion2XcbRectangles(const QRegion &region)
 
     rectangles.reserve(region.rectCount());
 
-    for (const QRect &rect : region.rects()) {
+    for (const QRect &rect : region) {
         xcb_rectangle_t r;
 
         r.x = rect.x();
@@ -283,7 +283,7 @@ QRegion Utility::regionAddMargins(const QRegion &region, const QMargins &margins
 {
     QRegion tmp;
 
-    for (const QRect &rect : region.rects()) {
+    for (const QRect &rect : region) {
         tmp += rect.translated(offset) + margins;
     }
 

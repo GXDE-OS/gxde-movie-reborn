@@ -136,11 +136,7 @@ Q_ENUM(ActionKind)
     static bool actionHasArgs(QAction* act) { return act->property("args").isValid(); }
     static QList<QVariant> actionArgs(QAction* act) { return act->property("args").toList(); }
     static ActionKind actionKind(QAction* act) {
-#if QT_VERSION < QT_VERSION_CHECK(5, 6, 2)
-        auto kd = (ActionKind)act->property("kind").value<int>();
-#else
         auto kd = act->property("kind").value<ActionKind>();
-#endif
         return kd;
     }
 

@@ -120,7 +120,7 @@ Tip::~Tip()
 
 }
 
-void Tip::enterEvent(QEvent* e)
+void Tip::enterEvent(QEnterEvent* e)
 {
     hide();
 }
@@ -204,7 +204,7 @@ void Tip::paintEvent(QPaintEvent *)
     bool outer = true;
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+    painter.setRenderHints(QPainter::Antialiasing);
     auto radius = d->radius;
     auto penWidthf = 1.0;
     auto background =  d->background;

@@ -163,7 +163,7 @@ protected:
         auto fm = _title->fontMetrics();
         auto shorted = fm.elidedText(_msg, Qt::ElideMiddle, 140*2);
         int h = fm.height();
-        if (fm.width(shorted) > 140) {
+        if (fm.horizontalAdvance(shorted) > 140) {
             h *= 2;
         } else {
         }
@@ -527,7 +527,8 @@ ToolboxProxy::ToolboxProxy(QWidget *mainWindow, PlayerEngine *proxy)
     bool composited = CompositingManager::get().composited();
 	setFrameShape(QFrame::NoFrame);
     setAutoFillBackground(false);
-    setAttribute(Qt::WA_TranslucentBackground);
+    // 启用此参数会导致透明渲染有问题，导致 x11 下媒体控制区域无法正常显示全部为黑框
+    //setAttribute(Qt::WA_TranslucentBackground);
     if (!composited) {
         setWindowFlags(Qt::FramelessWindowHint|Qt::BypassWindowManagerHint);
         setContentsMargins(0, 0, 0, 0);
@@ -594,11 +595,11 @@ void ToolboxProxy::setup()
 
 
     _timeLabel = new QLabel("");
-    _timeLabel->setFixedWidth(_timeLabel->fontMetrics().width("99:99:99/99:99:99"));
+    _timeLabel->setFixedWidth(_timeLabel->fontMetrics().horizontalAdvance("99:99:99/99:99:99"));
     bot->addWidget(_timeLabel);
 
     auto *signalMapper = new QSignalMapper(this);
-    connect(signalMapper, static_cast<void(QSignalMapper::*)(const QString&)>(&QSignalMapper::mapped),
+    connect(signalMapper, &QSignalMapper::mappedString,
             this, &ToolboxProxy::buttonClicked);
 
     bot->addStretch();
@@ -983,7 +984,7 @@ void ToolboxProxy::updateTimeLabel()
     _timeLabel->setVisible(width() > 350);
     if (width() > 350) {
         auto right_geom = _right->geometry();
-        int left_w = _timeLabel->fontMetrics().width("99:99:99/99:99:99");
+        int left_w = _timeLabel->fontMetrics().horizontalAdvance("99:99:99/99:99:99");
         _timeLabel->show();
         int w = qMax(left_w, right_geom.width());
         _timeLabel->setFixedWidth(w + RIGHT_MARGIN - LEFT_MARGIN); 

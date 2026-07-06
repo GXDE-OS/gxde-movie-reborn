@@ -50,8 +50,7 @@
 
 #include <QtWidgets>
 #include <QtDBus>
-#include <QtX11Extras>
-#include <QX11Info>
+#include <QtGui/private/qtx11extras_p.h>
 #include <dlabel.h>
 #include <DApplication>
 #include <DTitlebar>
@@ -167,7 +166,7 @@ public:
         qApp->removeNativeEventFilter(this);
     }
 
-    bool nativeEventFilter(const QByteArray &eventType, void *message, long *) {
+    bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) {
         if(Q_LIKELY(eventType == "xcb_generic_event_t")) {
             xcb_generic_event_t* event = static_cast<xcb_generic_event_t *>(message);
             switch (event->response_type & ~0x80) {
@@ -214,7 +213,7 @@ public:
         qApp->removeNativeEventFilter(this);
     }
 
-    bool nativeEventFilter(const QByteArray &eventType, void *message, long *) {
+    bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) {
         if(Q_LIKELY(eventType == "xcb_generic_event_t")) {
             xcb_generic_event_t* event = static_cast<xcb_generic_event_t *>(message);
             switch (event->response_type & ~0x80) {
@@ -269,7 +268,7 @@ class MainWindowEventListener : public QObject
                 QMouseEvent *e = static_cast<QMouseEvent*>(event);
                 setLeftButtonPressed(true);
                 auto mw = static_cast<MainWindow*>(parent());
-                if (mw->insideResizeArea(e->globalPos()) && lastCornerEdge != Utility::NoneEdge)
+                if (mw->insideResizeArea(e->globalPosition().toPoint()) && lastCornerEdge != Utility::NoneEdge)
                     startResizing = true;
 
                 mw->capturedMousePressEvent(e);
@@ -302,32 +301,32 @@ class MainWindowEventListener : public QObject
                 const QRect window_visible_rect = _window->frameGeometry() - mw->dragMargins();
 
                 if (!leftButtonPressed) {
-                    if (mw->insideResizeArea(e->globalPos())) {
+                    if (mw->insideResizeArea(e->globalPosition().toPoint())) {
                         Utility::CornerEdge mouseCorner = Utility::NoneEdge;
                         QRect cornerRect;
 
                         /// begin set cursor corner type
                         cornerRect.setSize(QSize(MOUSE_MARGINS * 2, MOUSE_MARGINS * 2));
                         cornerRect.moveTopLeft(_window->frameGeometry().topLeft());
-                        if (cornerRect.contains(e->globalPos())) {
+                        if (cornerRect.contains(e->globalPosition().toPoint())) {
                             mouseCorner = Utility::TopLeftCorner;
                             goto set_cursor;
                         }
 
                         cornerRect.moveTopRight(_window->frameGeometry().topRight());
-                        if (cornerRect.contains(e->globalPos())) {
+                        if (cornerRect.contains(e->globalPosition().toPoint())) {
                             mouseCorner = Utility::TopRightCorner;
                             goto set_cursor;
                         }
 
                         cornerRect.moveBottomRight(_window->frameGeometry().bottomRight());
-                        if (cornerRect.contains(e->globalPos())) {
+                        if (cornerRect.contains(e->globalPosition().toPoint())) {
                             mouseCorner = Utility::BottomRightCorner;
                             goto set_cursor;
                         }
 
                         cornerRect.moveBottomLeft(_window->frameGeometry().bottomLeft());
-                        if (cornerRect.contains(e->globalPos())) {
+                        if (cornerRect.contains(e->globalPosition().toPoint())) {
                             mouseCorner = Utility::BottomLeftCorner;
                             goto set_cursor;
                         }
@@ -335,17 +334,17 @@ class MainWindowEventListener : public QObject
                         goto skip_set_cursor; // disable edges
 
                         /// begin set cursor edge type
-                        if (e->globalX() <= window_visible_rect.x()) {
+                        if (e->globalPosition().toPoint().x() <= window_visible_rect.x()) {
                             mouseCorner = Utility::LeftEdge;
-                        } else if (e->globalX() < window_visible_rect.right()) {
-                            if (e->globalY() <= window_visible_rect.y()) {
+                        } else if (e->globalPosition().toPoint().x() < window_visible_rect.right()) {
+                            if (e->globalPosition().toPoint().y() <= window_visible_rect.y()) {
                                 mouseCorner = Utility::TopEdge;
-                            } else if (e->globalY() >= window_visible_rect.bottom()) {
+                            } else if (e->globalPosition().toPoint().y() >= window_visible_rect.bottom()) {
                                 mouseCorner = Utility::BottomEdge;
                             } else {
                                 goto skip_set_cursor;
                             }
-                        } else if (e->globalX() >= window_visible_rect.right()) {
+                        } else if (e->globalPosition().toPoint().x() >= window_visible_rect.right()) {
                             mouseCorner = Utility::RightEdge;
                         } else {
                             goto skip_set_cursor;
@@ -425,26 +424,26 @@ skip_set_cursor:
                 ratio = sz.width() / (qreal)sz.height();
                 switch (edge) {
                     case Utility::TopLeftCorner:
-                        geom.setLeft(e->globalX());
+                        geom.setLeft(e->globalPosition().toPoint().x());
                         geom.setTop(geom.bottom() - geom.width() / ratio);
                         break;
                     case Utility::BottomLeftCorner:
                     case Utility::LeftEdge:
-                        geom.setLeft(e->globalX());
+                        geom.setLeft(e->globalPosition().toPoint().x());
                         geom.setHeight(geom.width() / ratio);
                         break;
                     case Utility::BottomRightCorner:
                     case Utility::RightEdge:
-                        geom.setRight(e->globalX());
+                        geom.setRight(e->globalPosition().toPoint().x());
                         geom.setHeight(geom.width() / ratio);
                         break;
                     case Utility::TopRightCorner:
                     case Utility::TopEdge:
-                        geom.setTop(e->globalY());
+                        geom.setTop(e->globalPosition().toPoint().y());
                         geom.setWidth(geom.height() * ratio);
                         break;
                     case Utility::BottomEdge:
-                        geom.setBottom(e->globalY());
+                        geom.setBottom(e->globalPosition().toPoint().y());
                         geom.setWidth(geom.height() * ratio);
                         break;
                     default: break;
@@ -452,28 +451,28 @@ skip_set_cursor:
             } else {
                 switch (edge) {
                     case Utility::BottomLeftCorner:
-                        geom.setBottomLeft(e->globalPos());
+                        geom.setBottomLeft(e->globalPosition().toPoint());
                         break;
                     case Utility::TopLeftCorner:
-                        geom.setTopLeft(e->globalPos());
+                        geom.setTopLeft(e->globalPosition().toPoint());
                         break;
                     case Utility::LeftEdge:
-                        geom.setLeft(e->globalX());
+                        geom.setLeft(e->globalPosition().toPoint().x());
                         break;
                     case Utility::BottomRightCorner:
-                        geom.setBottomRight(e->globalPos());
+                        geom.setBottomRight(e->globalPosition().toPoint());
                         break;
                     case Utility::RightEdge:
-                        geom.setRight(e->globalX());
+                        geom.setRight(e->globalPosition().toPoint().x());
                         break;
                     case Utility::TopRightCorner:
-                        geom.setTopRight(e->globalPos());
+                        geom.setTopRight(e->globalPosition().toPoint());
                         break;
                     case Utility::TopEdge:
-                        geom.setTop(e->globalY());
+                        geom.setTop(e->globalPosition().toPoint().y());
                         break;
                     case Utility::BottomEdge:
-                        geom.setBottom(e->globalY());
+                        geom.setBottom(e->globalPosition().toPoint().y());
                         break;
                     default: break;
                 }
@@ -616,7 +615,7 @@ MainWindow::MainWindow(QWidget *parent)
     // mini ui
     auto *signalMapper = new QSignalMapper(this);
     connect(signalMapper,
-            static_cast<void(QSignalMapper::*)(const QString&)>(&QSignalMapper::mapped),
+            &QSignalMapper::mappedString,
             this, &MainWindow::miniButtonClicked);
 
     _miniPlayBtn = new DImageButton(this);
@@ -1015,7 +1014,7 @@ void MainWindow::onApplicationStateChanged(Qt::ApplicationState e)
         case Qt::ApplicationActive:
             if (qApp->focusWindow())
                 qDebug() << QString("focus window 0x%1").arg(qApp->focusWindow()->winId(), 0, 16);
-            qApp->setActiveWindow(this);
+            this->activateWindow();
             _evm->resumeRecording();
             resumeToolsWindow();
             break;
@@ -2048,13 +2047,13 @@ void MainWindow::handleSettings()
 
 void MainWindow::playList(const QList<QString>& l)
 {
-    static QRegExp url_re("\\w+://");
+    static QRegularExpression url_re("\\w+://");
 
     QList<QUrl> urls;
     for (const auto& filename: l) {
         qDebug() << filename;
         QUrl url;
-        if (url_re.indexIn(filename) == 0) {
+        if (url_re.match(filename).hasMatch()) {
             url = QUrl::fromPercentEncoding(filename.toUtf8());
             if (!url.isValid())
                 url = QUrl(filename);
@@ -2281,7 +2280,7 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 
 void MainWindow::wheelEvent(QWheelEvent* we)
 {
-    if (insideToolsArea(we->pos()) || insideResizeArea(we->globalPos()))
+    if (insideToolsArea(we->position().toPoint()) || insideResizeArea(we->globalPosition().toPoint()))
         return;
 
     if (_playlist->state() == PlaylistWidget::Opened) {
@@ -2341,7 +2340,7 @@ void MainWindow::resizeByConstraints(bool forceCentered)
         qDebug() << mi.width << mi.height;
     }
 
-    auto geom = qApp->desktop()->availableGeometry(this);
+    auto geom = QGuiApplication::primaryScreen()->availableGeometry();
     if (sz.width() > geom.width() || sz.height() > geom.height()) {
         sz.scale(geom.width(), geom.height(), Qt::KeepAspectRatio);
     }
@@ -2353,7 +2352,7 @@ void MainWindow::resizeByConstraints(bool forceCentered)
     if (forceCentered) {
         QRect r;
         r.setSize(sz);
-        r.moveTopLeft({(geom.width() - r.width()) /2, (geom.height() - r.height())/2});
+        r.moveTopLeft(QPoint((geom.width() - r.width()) /2, (geom.height() - r.height())/2));
         this->setGeometry(r);
     } else {
         QRect r = this->geometry();
@@ -2472,7 +2471,7 @@ void MainWindow::mousePressEvent(QMouseEvent *ev)
         _mousePressed = true;
         if (_playState->isVisible()) {
             //_playState->setState(DImageButton::Press);
-            QMouseEvent me(QEvent::MouseButtonPress, {}, ev->button(), ev->buttons(), ev->modifiers());
+            QMouseEvent me(QEvent::MouseButtonPress, ev->position(), ev->globalPosition(), ev->button(), ev->buttons(), ev->modifiers());
             qApp->sendEvent(_playState, &me);
         }
     }
@@ -2526,7 +2525,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *ev)
     }
 
     // dtk has a bug, DImageButton propagates mouseReleaseEvent event when it responded to.
-    if (!insideResizeArea(ev->globalPos()) && !_mouseMoved && !insideToolsArea(ev->pos())) {
+    if (!insideResizeArea(ev->globalPosition().toPoint()) && !_mouseMoved && !insideToolsArea(ev->position().toPoint())) {
         if (_playlist->state() != PlaylistWidget::Opened)
             _delayedMouseReleaseTimer.start(120);
     }
@@ -2545,7 +2544,7 @@ void MainWindow::delayedMouseReleaseHandler()
 void MainWindow::mouseMoveEvent(QMouseEvent *ev)
 {
     if (_mouseMoved) {
-        return Utility::updateMousePointForWindowMove(this->winId(), ev->globalPos() * devicePixelRatioF());
+        return Utility::updateMousePointForWindowMove(this->winId(), ev->globalPosition().toPoint() * devicePixelRatioF());
     }
 
     _mouseMoved = true;
@@ -2650,7 +2649,7 @@ void MainWindow::toggleUIMode()
     if (_miniMode)
         _titlebar->setDisableFlags(Qt::WindowMaximizeButtonHint);
     else
-        _titlebar->setDisableFlags(0);
+        _titlebar->setDisableFlags(static_cast<Qt::WindowFlags>(0));
 
     if (_listener) _listener->setEnabled(!_miniMode);
 
@@ -2820,9 +2819,10 @@ void MainWindow::dropEvent(QDropEvent *ev)
     }
 
     {
-        auto all = urls.toSet();
-        auto accepted = valids.toSet();
-        auto invalids = all.subtract(accepted).toList();
+        auto all = QSet<QUrl>(urls.begin(), urls.end());
+        auto accepted = QSet<QUrl>(valids.begin(), valids.end());
+        auto invalidUrls = all.subtract(accepted);
+        auto invalids = QList<QUrl>(invalidUrls.begin(), invalidUrls.end());
         int ms = 0;
         for (const auto& url: invalids) {
             QTimer::singleShot(ms, [=]() {

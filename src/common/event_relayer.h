@@ -49,7 +49,7 @@ signals:
     void targetNeedsUpdatePosition(const QPoint& p);
 
 protected:
-    bool nativeEventFilter(const QByteArray &eventType, void *message, long *) override;
+    bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) override;
 
 private:
     QWindow *_source, *_target;

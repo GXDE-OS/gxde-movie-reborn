@@ -776,7 +776,7 @@ void MpvProxy::play()
             if (!QFile::exists(sub)) {
                 MovieConfiguration::get().removeFromListUrl(_file, ConfigKnownKey::ExternalSubs, sub);
             } else {
-                loadSubtitle(sub);
+                loadSubtitle(QFileInfo(sub));
             }
         }
 

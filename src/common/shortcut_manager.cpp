@@ -108,9 +108,9 @@ ShortcutManager::ShortcutManager()
             auto modifier = static_cast<Qt::KeyboardModifiers>(keyseqs.value(0).toInt());
             auto key = static_cast<Qt::Key>(keyseqs.value(1).toInt());
 
-            qDebug() << "update binding" << sk << QKeySequence(modifier + key);
+            qDebug() << "update binding" << sk << QKeySequence(QKeyCombination(modifier, key));
             _map.remove(_map.key(_keyToAction[sk]));
-            _map[QKeySequence(modifier + key)] = _keyToAction[sk];
+            _map[QKeySequence(QKeyCombination(modifier, key))] = _keyToAction[sk];
             emit bindingsChanged();
         });
 }
@@ -136,12 +136,12 @@ void ShortcutManager::toggleGroupShortcuts(GroupPtr grp, bool on)
 
         QString sk = opt->key();
         sk.remove(0, sk.lastIndexOf('.') + 1);
-        qDebug() << opt->name() << QKeySequence(modifier + key);
+        qDebug() << opt->name() << QKeySequence(QKeyCombination(modifier, key));
 
         if (on) {
-            _map[QKeySequence(modifier + key)] = _keyToAction[sk];
+            _map[QKeySequence(QKeyCombination(modifier, key))] = _keyToAction[sk];
         } else {
-            _map.remove(QKeySequence(modifier + key));
+            _map.remove(QKeySequence(QKeyCombination(modifier, key)));
         }
     });
 }
@@ -151,12 +151,12 @@ void ShortcutManager::buildBindingsFromSettings()
     _map.clear();
     // default builtins 
     _map.insert(QKeySequence(Qt::Key_Left), ActionFactory::SeekBackward);
-    _map.insert(QKeySequence(Qt::Key_Left + Qt::SHIFT), ActionFactory::SeekBackwardLarge);
+    _map.insert(QKeySequence(Qt::Key_Left | Qt::SHIFT), ActionFactory::SeekBackwardLarge);
     _map.insert(QKeySequence(Qt::Key_Right), ActionFactory::SeekForward);
-    _map.insert(QKeySequence(Qt::Key_Right + Qt::SHIFT), ActionFactory::SeekForwardLarge);
+    _map.insert(QKeySequence(Qt::Key_Right | Qt::SHIFT), ActionFactory::SeekForwardLarge);
     _map.insert(QKeySequence(Qt::Key_Space), ActionFactory::TogglePause);
     _map.insert(QKeySequence(Qt::Key_Escape), ActionFactory::QuitFullscreen);
-    _map.insert(QKeySequence(Qt::Key_Slash + Qt::CTRL + Qt::SHIFT), ActionFactory::ViewShortcut);
+    _map.insert(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Slash), ActionFactory::ViewShortcut);
 
     QPointer<DSettingsGroup> shortcuts = Settings::get().shortcuts();
 
@@ -198,7 +198,7 @@ QString ShortcutManager::toJson()
 
             QJsonObject jsonItem;
             jsonItem.insert("name", qApp->translate("QObject", opt->name().toUtf8().data()));
-            jsonItem.insert("value", QKeySequence(modifier + key).toString(QKeySequence::PortableText));
+            jsonItem.insert("value", QKeySequence(QKeyCombination(modifier, key)).toString(QKeySequence::PortableText));
             jsonItems.append(jsonItem);
 
         });

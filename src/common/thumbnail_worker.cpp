@@ -119,12 +119,12 @@ QPixmap ThumbnailWorker::genThumb(const QUrl& url, int secs)
 void ThumbnailWorker::run()
 {
     setPriority(QThread::IdlePriority);
-    while (!_quit.load()) {
+    while (!_quit.loadRelaxed()) {
 
         QPair<QUrl, int> w;
         {
             QMutexLocker lock(&_thumbLock);
-            while (_wq.isEmpty() && !_quit.load()) {
+            while (_wq.isEmpty() && !_quit.loadRelaxed()) {
                 cond.wait(lock.mutex(), 40);
             }
 
@@ -134,7 +134,7 @@ void ThumbnailWorker::run()
             }
         }
 
-        if (_quit.load()) break;
+        if (_quit.loadRelaxed()) break;
         
         {
             QMutexLocker lock(&_thumbLock);

@@ -31,7 +31,7 @@
 #include <xcb/xcb_aux.h>
 
 #include <QtCore>
-#include <QX11Info>
+#include <QtGui/private/qtx11extras_p.h>
 
 #include "event_relayer.h"
 
@@ -58,7 +58,7 @@ EventRelayer::~EventRelayer() {
     qApp->removeNativeEventFilter(this);
 }
 
-bool EventRelayer::nativeEventFilter(const QByteArray &eventType, void *message, long *) {
+bool EventRelayer::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) {
     if(Q_LIKELY(eventType == "xcb_generic_event_t")) {
         xcb_generic_event_t* event = static_cast<xcb_generic_event_t *>(message);
         switch (event->response_type & ~0x80) {

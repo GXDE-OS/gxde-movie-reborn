@@ -40,7 +40,7 @@ MovieProgressIndicator::MovieProgressIndicator(QWidget* parent)
     QFontMetrics fm(ft);
     this->setFont(ft);
 
-    _fixedSize = QSize(qMax(52, fm.width("999:99")), fm.height() + 10);
+    _fixedSize = QSize(qMax(52, fm.horizontalAdvance("999:99")), fm.height() + 10);
     this->setFixedSize(_fixedSize);
 }
 

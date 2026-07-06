@@ -156,7 +156,7 @@ void DMRSlider::mousePressEvent(QMouseEvent *e)
     if (e->buttons() == Qt::LeftButton && isEnabled()) {
         QSlider::mousePressEvent(e);
 
-        int v = position2progress(e->pos());;
+        int v = position2progress(e->position().toPoint());;
         setSliderPosition(v);
         emit sliderMoved(v);
         _down = true;
@@ -167,11 +167,11 @@ void DMRSlider::mouseMoveEvent(QMouseEvent *e)
 {
     if (!isEnabled()) return;
 
-    int v = position2progress(e->pos());;
+    int v = position2progress(e->position().toPoint());;
     if (_down) {
         setSliderPosition(v);
         if (_showIndicator) {
-            _indicatorPos = {e->x(), pos().y()+TOOLBOX_TOP_EXTENT-4};
+            _indicatorPos = {e->position().toPoint().x(), pos().y()+TOOLBOX_TOP_EXTENT-4};
             update();
         }
     } else {
@@ -186,7 +186,7 @@ void DMRSlider::mouseMoveEvent(QMouseEvent *e)
 
         if (_lastHoverValue != v) {
             if (_showIndicator) {
-                _indicatorPos = {e->x(), pos().y()+TOOLBOX_TOP_EXTENT-4};
+                _indicatorPos = {e->position().toPoint().x(), pos().y()+TOOLBOX_TOP_EXTENT-4};
                 update();
             }
 
@@ -281,7 +281,7 @@ void DMRSlider::startAnimation(bool reverse)
     _hoverAni->start(QVariantAnimation::DeleteWhenStopped);
 }
 
-void DMRSlider::enterEvent(QEvent *e)
+void DMRSlider::enterEvent(QEnterEvent *e)
 {
     if (_indicatorEnabled) {
         if (property("Hover") != "true") {

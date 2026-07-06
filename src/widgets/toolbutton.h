@@ -58,7 +58,7 @@ signals:
     void requestVolumeDown();
 
 protected:
-    void enterEvent(QEvent *ev) override;
+    void enterEvent(QEnterEvent *ev) override;
     void leaveEvent(QEvent *ev) override;
     void wheelEvent(QWheelEvent* wev) override;
 

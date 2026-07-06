@@ -295,11 +295,7 @@ QList<QAction*> ActionFactory::findActionsByKind(ActionKind target_kd)
     QList<QAction*> res;
     auto p = _contextMenuActions.begin();
     while (p != _contextMenuActions.end()) {
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-        auto kd = (ActionKind)(*p)->property("kind").value<int>();
-#else
         auto kd = (*p)->property("kind").value<ActionKind>();
-#endif
         if (kd == target_kd) {
             res.append(*p);
         }

@@ -47,7 +47,7 @@ public:
     bool isThumbGenerated(const QUrl& url, int secs);
     QPixmap getThumb(const QUrl& url, int secs);
 
-    void stop() { _quit.store(1); quit(); }
+    void stop() { _quit.storeRelaxed(1); quit(); }
 
 public slots:
     void requestThumb(const QUrl& url, int secs);

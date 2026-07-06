@@ -100,7 +100,7 @@ protected:
                 tip->adjustSize();
                 tip->raise();
                 auto pos = he->globalPos() + QPoint{0, 10};
-                auto dw = qApp->desktop()->availableGeometry(item).width();
+                auto dw = QGuiApplication::primaryScreen()->availableGeometry().width();
                 if (pos.x() + tip->width() > dw) {
                     pos.rx() = dw - tip->width();
                 }
@@ -314,7 +314,7 @@ protected:
         setHovered(false);
     }
 
-    void enterEvent(QEvent* e) override
+    void enterEvent(QEnterEvent* e) override
     {
         _closeBtn->show();
         _closeBtn->raise();
@@ -432,7 +432,7 @@ protected:
                 auto *plw = dynamic_cast<PlaylistWidget*>(parent());
                 auto *mw = dynamic_cast<MainWindow*>(plw->parent());
                 
-                if (mw->insideResizeArea(me->globalPos()))
+                if (mw->insideResizeArea(me->globalPosition().toPoint()))
                     return false;
 
                 if (plw->state() == PlaylistWidget::Opened && !plw->underMouse()) {
@@ -484,10 +484,10 @@ PlaylistWidget::PlaylistWidget(QWidget *mw, PlayerEngine *mpv)
     if (!_closeMapper) {
         _closeMapper = new QSignalMapper(this);
         connect(_closeMapper,
-                static_cast<void(QSignalMapper::*)(QWidget*)>(&QSignalMapper::mapped),
-            [=](QWidget* w) {
+                &QSignalMapper::mappedObject,
+            [=](QObject* w) {
                 qDebug() << "item close clicked";
-                _clickedItem = w;
+                _clickedItem = qobject_cast<QWidget*>(w);
                 _mw->requestAction(ActionFactory::ActionKind::PlaylistRemoveItem);
             });
     }
@@ -495,8 +495,8 @@ PlaylistWidget::PlaylistWidget(QWidget *mw, PlayerEngine *mpv)
     if (!_activateMapper) {
         _activateMapper = new QSignalMapper(this);
         connect(_activateMapper,
-                static_cast<void(QSignalMapper::*)(QWidget*)>(&QSignalMapper::mapped),
-            [=](QWidget* w) {
+                &QSignalMapper::mappedObject,
+            [=](QObject* w) {
                 qDebug() << "item double clicked";
                 QList<QVariant> args;
                 for (int i = 0; i < count(); i++) {
@@ -625,7 +625,7 @@ void PlaylistWidget::dragEnterEvent(QDragEnterEvent *ev)
     auto md = ev->mimeData();
     qDebug() << md->formats();
     if (md->formats().contains("application/x-qabstractitemmodeldatalist")) {
-        if (!selectedItems().contains(itemAt(ev->pos()))) {
+        if (!selectedItems().contains(itemAt(ev->position().toPoint()))) {
             setDropIndicatorShown(true);
         }
         QListWidget::dragEnterEvent(ev);
@@ -641,7 +641,7 @@ void PlaylistWidget::dragMoveEvent(QDragMoveEvent *ev)
 {
     auto md = ev->mimeData();
     if (md->formats().contains("application/x-qabstractitemmodeldatalist")) {
-        if (!selectedItems().contains(itemAt(ev->pos()))) {
+        if (!selectedItems().contains(itemAt(ev->position().toPoint()))) {
             setDropIndicatorShown(true);
         }
         QListWidget::dragMoveEvent(ev);

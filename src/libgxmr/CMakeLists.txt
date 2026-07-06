@@ -5,6 +5,17 @@ set(CMD_NAME gxmr)
 
 add_definitions(-D_LIBDMR_)
 
+find_package(PkgConfig REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5DBus REQUIRED)
+find_package(Qt5X11Extras REQUIRED)
+find_package(Qt5Network REQUIRED)
+find_package(Qt5Concurrent REQUIRED)
+find_package(Qt5Sql REQUIRED)
+find_package(Dtk REQUIRED Core Widget)
+
+pkg_check_modules(Mpv REQUIRED IMPORTED_TARGET mpv)
+pkg_check_modules(AV REQUIRED IMPORTED_TARGET libavformat libavutil libavcodec)
 pkg_check_modules(FFTHUMB REQUIRED libffmpegthumbnailer)
 
 include_directories(${CMAKE_INCLUDE_CURRENT_DIR})

@@ -58,7 +58,7 @@ void VolumeButton::changeLevel(Level lv)
     }
 }
 
-void VolumeButton::enterEvent(QEvent *ev)
+void VolumeButton::enterEvent(QEnterEvent *ev)
 {
     emit entered();
 }

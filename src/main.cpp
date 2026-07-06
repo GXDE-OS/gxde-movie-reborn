@@ -37,6 +37,8 @@
 #include <DApplication>
 #include <DWidgetUtil>
 
+#include <QRegularExpression>
+
 #include "config.h"
 
 #include "options.h"
@@ -54,8 +56,6 @@ int main(int argc, char *argv[])
 {
     CompositingManager::detectOpenGLEarly();
 
-    DApplication::loadDXcbPlugin();
-
 #if defined(STATIC_LIB)
     DWIDGET_INIT_RESOURCE();
 #endif
@@ -65,9 +65,7 @@ int main(int argc, char *argv[])
     // required by mpv
     setlocale(LC_NUMERIC, "C");
 
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
-    // overwrite DApplication default value
-    app.setAttribute(Qt::AA_ForceRasterWidgets, false);
+
     app.setOrganizationName("GXDE");
     app.setApplicationName("gxde-movie");
     app.setApplicationVersion(DMR_VERSION);
@@ -118,11 +116,11 @@ int main(int argc, char *argv[])
 
     app.setWindowIcon(QIcon(":/resources/icons/logo.svg"));
     app.setApplicationDisplayName(QObject::tr("GXDE Movie"));
-    app.setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);
+
 
     MovieConfiguration::get().init();
 
-    QRegExp url_re("\\w+://");
+    QRegularExpression url_re("\\w+://");
 
     dmr::MainWindow mw;
     mw.setMinimumSize(QSize(528, 400));
