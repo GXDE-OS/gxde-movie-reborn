@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
+<?xml version='1.0' encoding='utf-8'?>
 <TS version="2.1" language="ja">
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
-        <location filename="../main.cpp" line="120"/>
+        <location filename="../main.cpp" line="88" />
+        <location filename="../main.cpp" line="120" />
         <source>GXDE Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDEムービー</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="89" />
         <source>GXDE Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Movieは、シンプルでボーダーレスなデザインの、よく設計されたフル機能のビデオプレイヤーです。複数のビデオフォーマットに対応した、ローカルおよびストリーミングメディアの再生が可能です。</translation>
     </message>
     <message>
         <source>Deepin Movie</source>
@@ -23,471 +22,471 @@
         <translation type="vanished">Deepin Movie はシンプルでボーダレスなデザインを持つ、適切に策定されたフル装備のビデオプレーヤーです。それは複数のビデオ形式でローカルやストリーミングのメディア再生をサポートします。</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="116"/>
+        <location filename="../common/mainwindow.cpp" line="116" />
         <source>Invalid folder</source>
-        <translation type="unfinished"></translation>
+        <translation>無効なフォルダ</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="130"/>
+        <location filename="../common/mainwindow.cpp" line="130" />
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダを開く</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="121"/>
-        <source>You don&apos;t have permission to operate this folder</source>
-        <translation type="unfinished"></translation>
+        <location filename="../common/mainwindow.cpp" line="121" />
+        <source>You don't have permission to operate this folder</source>
+        <translation>このフォルダを操作する権限がありません</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="5"/>
+        <location filename="../common/settings_translation.cpp" line="5" />
         <source>Auto add similar files to play</source>
-        <translation type="unfinished"></translation>
+        <translation>類似のファイルを自動的にプレイリストに追加</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="6"/>
+        <location filename="../common/settings_translation.cpp" line="6" />
         <source>Clear playlist when exit</source>
-        <translation type="unfinished"></translation>
+        <translation>プレイリストをクリアして終了</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="7"/>
+        <location filename="../common/settings_translation.cpp" line="7" />
         <source>Show video preview on mouseover</source>
-        <translation type="unfinished"></translation>
+        <translation>動画のプレビューをマウスオーバー時に表示</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="8"/>
+        <location filename="../common/settings_translation.cpp" line="8" />
         <source>Open a new player for each file played</source>
-        <translation type="unfinished"></translation>
+        <translation>各ファイルを再生するごとに新しいプレイヤーを開く</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="9"/>
+        <location filename="../common/settings_translation.cpp" line="9" />
         <source>Pause when minimized</source>
         <translation>最小化時に一時停止</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="10"/>
+        <location filename="../common/settings_translation.cpp" line="10" />
         <source>Remember playback position</source>
-        <translation type="unfinished"></translation>
+        <translation>再生位置を覚えておく</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="11"/>
+        <location filename="../common/settings_translation.cpp" line="11" />
         <source>Path</source>
         <translation>パス</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="12"/>
+        <location filename="../common/settings_translation.cpp" line="12" />
         <source>Basic</source>
         <translation>ベーシック</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="13"/>
+        <location filename="../common/settings_translation.cpp" line="13" />
         <source>Play</source>
         <translation>再生</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="14"/>
-        <location filename="../common/settings_translation.cpp" line="19"/>
+        <location filename="../common/settings_translation.cpp" line="14" />
+        <location filename="../common/settings_translation.cpp" line="19" />
         <source>Screenshot</source>
         <translation>スクリーンショット</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="15"/>
+        <location filename="../common/settings_translation.cpp" line="15" />
         <source>Shortcuts</source>
         <translation>ショートカット</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="16"/>
+        <location filename="../common/settings_translation.cpp" line="16" />
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="17"/>
+        <location filename="../common/settings_translation.cpp" line="17" />
         <source>Frame/Sound</source>
         <translation>フレーム/音</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="18"/>
+        <location filename="../common/settings_translation.cpp" line="18" />
         <source>Playback</source>
         <translation>プレイバック</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="20"/>
-        <location filename="../common/settings_translation.cpp" line="21"/>
+        <location filename="../common/settings_translation.cpp" line="20" />
+        <location filename="../common/settings_translation.cpp" line="21" />
         <source>Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="22"/>
+        <location filename="../common/settings_translation.cpp" line="22" />
         <source>Font Style</source>
-        <translation type="unfinished"></translation>
+        <translation>フォントスタイル</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="23"/>
+        <location filename="../common/settings_translation.cpp" line="23" />
         <source>Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトに戻す</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="24"/>
+        <location filename="../common/settings_translation.cpp" line="24" />
         <source>Open file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="25"/>
+        <location filename="../common/settings_translation.cpp" line="25" />
         <source>Open next</source>
         <translation>次を開く</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="26"/>
+        <location filename="../common/settings_translation.cpp" line="26" />
         <source>Open previous</source>
         <translation>前を開く</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="27"/>
+        <location filename="../common/settings_translation.cpp" line="27" />
         <source>Mini mode</source>
         <translation>ミニモード</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="28"/>
+        <location filename="../common/settings_translation.cpp" line="28" />
         <source>Mute</source>
         <translation>消音</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="29"/>
+        <location filename="../common/settings_translation.cpp" line="29" />
         <source>Next frame</source>
-        <translation type="unfinished"></translation>
+        <translation>次のフレーム</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="30"/>
+        <location filename="../common/settings_translation.cpp" line="30" />
         <source>Previous frame</source>
-        <translation type="unfinished"></translation>
+        <translation>前のフレーム</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="31"/>
+        <location filename="../common/settings_translation.cpp" line="31" />
         <source>Volume down</source>
         <translation>音量を下げる</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="32"/>
+        <location filename="../common/settings_translation.cpp" line="32" />
         <source>Volume up</source>
         <translation>音量を上げる</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="33"/>
+        <location filename="../common/settings_translation.cpp" line="33" />
         <source>Speed up</source>
-        <translation type="unfinished"></translation>
+        <translation>スピードアップ</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="34"/>
+        <location filename="../common/settings_translation.cpp" line="34" />
         <source>Speed down</source>
-        <translation type="unfinished"></translation>
+        <translation>スピードダウン</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="35"/>
+        <location filename="../common/settings_translation.cpp" line="35" />
         <source>Fullscreen</source>
         <translation>フルスクリーンにする</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="36"/>
+        <location filename="../common/settings_translation.cpp" line="36" />
         <source>Pause/Play</source>
         <translation>一時停止・再生</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="37"/>
+        <location filename="../common/settings_translation.cpp" line="37" />
         <source>Playlist</source>
         <translation>プレイリスト</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="38"/>
+        <location filename="../common/settings_translation.cpp" line="38" />
         <source>Reset speed</source>
-        <translation type="unfinished"></translation>
+        <translation>リセット速度</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="39"/>
+        <location filename="../common/settings_translation.cpp" line="39" />
         <source>Rewind</source>
         <translation>巻き戻し</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="40"/>
+        <location filename="../common/settings_translation.cpp" line="40" />
         <source>Forward</source>
         <translation>転送</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="41"/>
+        <location filename="../common/settings_translation.cpp" line="41" />
         <source>Burst screenshot</source>
         <translation>スクリーンショットを連続撮影</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="42"/>
+        <location filename="../common/settings_translation.cpp" line="42" />
         <source>Film screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>映画のスクリーンショット</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="43"/>
+        <location filename="../common/settings_translation.cpp" line="43" />
         <source>0.5s backward</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5秒後退</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="44"/>
+        <location filename="../common/settings_translation.cpp" line="44" />
         <source>0.5s forward</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5秒前進</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="45"/>
+        <location filename="../common/settings_translation.cpp" line="45" />
         <source>Font</source>
         <translation>フォント</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="46"/>
+        <location filename="../common/settings_translation.cpp" line="46" />
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>フォントサイズ</translation>
     </message>
 </context>
 <context>
     <name>UrlDialog</name>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="41"/>
+        <location filename="../widgets/url_dialog.cpp" line="41" />
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="42"/>
+        <location filename="../widgets/url_dialog.cpp" line="42" />
         <source>Confirm</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="46"/>
+        <location filename="../widgets/url_dialog.cpp" line="46" />
         <source>Please enter the URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>URLを入力してください：</translation>
     </message>
 </context>
 <context>
     <name>dmr::ActionFactory</name>
     <message>
-        <location filename="../common/actions.cpp" line="84"/>
-        <location filename="../common/actions.cpp" line="269"/>
+        <location filename="../common/actions.cpp" line="84" />
+        <location filename="../common/actions.cpp" line="269" />
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="108"/>
+        <location filename="../common/actions.cpp" line="108" />
         <source>Fullscreen</source>
         <translation>フルスクリーンにする</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="110"/>
+        <location filename="../common/actions.cpp" line="110" />
         <source>Always on Top</source>
-        <translation type="unfinished"></translation>
+        <translation>常に最前面</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="284"/>
+        <location filename="../common/actions.cpp" line="284" />
         <source>Film info</source>
-        <translation type="unfinished"></translation>
+        <translation>映画情報</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="82"/>
-        <location filename="../common/actions.cpp" line="102"/>
+        <location filename="../common/actions.cpp" line="82" />
+        <location filename="../common/actions.cpp" line="102" />
         <source>Open file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="83"/>
-        <location filename="../common/actions.cpp" line="103"/>
+        <location filename="../common/actions.cpp" line="83" />
+        <location filename="../common/actions.cpp" line="103" />
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダを開く</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="85"/>
+        <location filename="../common/actions.cpp" line="85" />
         <source>Light theme</source>
-        <translation type="unfinished"></translation>
+        <translation>ライトテーマ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="104"/>
+        <location filename="../common/actions.cpp" line="104" />
         <source>Open URL</source>
         <translation>URL を開く</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="105"/>
+        <location filename="../common/actions.cpp" line="105" />
         <source>Open CD/DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>CD/DVDを開く</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="109"/>
+        <location filename="../common/actions.cpp" line="109" />
         <source>Mini Mode</source>
         <translation>最小化モード</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="115"/>
+        <location filename="../common/actions.cpp" line="115" />
         <source>Play Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>プレイモード</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="118"/>
+        <location filename="../common/actions.cpp" line="118" />
         <source>Order Play</source>
-        <translation type="unfinished"></translation>
+        <translation>注文プレイ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="119"/>
+        <location filename="../common/actions.cpp" line="119" />
         <source>Shuffle Play</source>
-        <translation type="unfinished"></translation>
+        <translation>シャッフル再生</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="120"/>
+        <location filename="../common/actions.cpp" line="120" />
         <source>Single Play</source>
-        <translation type="unfinished"></translation>
+        <translation>シングルプレイ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="121"/>
+        <location filename="../common/actions.cpp" line="121" />
         <source>Single Loop</source>
-        <translation type="unfinished"></translation>
+        <translation>単一ループ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="122"/>
+        <location filename="../common/actions.cpp" line="122" />
         <source>List Loop</source>
-        <translation type="unfinished"></translation>
+        <translation>リストループ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="129"/>
+        <location filename="../common/actions.cpp" line="129" />
         <source>Frame</source>
         <translation>フレーム</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="132"/>
+        <location filename="../common/actions.cpp" line="132" />
         <source>Default</source>
         <translation>デフォルト</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="140"/>
+        <location filename="../common/actions.cpp" line="140" />
         <source>Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>時計回り</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="141"/>
+        <location filename="../common/actions.cpp" line="141" />
         <source>Counterclockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>反時計回り</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="144"/>
+        <location filename="../common/actions.cpp" line="144" />
         <source>Next frame</source>
-        <translation type="unfinished"></translation>
+        <translation>次のフレーム</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="145"/>
+        <location filename="../common/actions.cpp" line="145" />
         <source>Previous frame</source>
-        <translation type="unfinished"></translation>
+        <translation>前のフレーム</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="152"/>
+        <location filename="../common/actions.cpp" line="152" />
         <source>Sound</source>
         <translation>サウンド</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="155"/>
+        <location filename="../common/actions.cpp" line="155" />
         <source>Channel</source>
         <translation>チャンネル</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="158"/>
+        <location filename="../common/actions.cpp" line="158" />
         <source>Stereo</source>
         <translation>ステレオ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="159"/>
+        <location filename="../common/actions.cpp" line="159" />
         <source>Left channel</source>
-        <translation type="unfinished"></translation>
+        <translation>左チャンネル</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="160"/>
+        <location filename="../common/actions.cpp" line="160" />
         <source>Right channel</source>
-        <translation type="unfinished"></translation>
+        <translation>右チャンネル</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="166"/>
+        <location filename="../common/actions.cpp" line="166" />
         <source>Track</source>
         <translation>曲</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="176"/>
+        <location filename="../common/actions.cpp" line="176" />
         <source>Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="177"/>
+        <location filename="../common/actions.cpp" line="177" />
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>ロード</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="178"/>
+        <location filename="../common/actions.cpp" line="178" />
         <source>Online Search</source>
-        <translation type="unfinished"></translation>
+        <translation>オンライン検索</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="182"/>
+        <location filename="../common/actions.cpp" line="182" />
         <source>Select</source>
         <translation>選択</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="186"/>
+        <location filename="../common/actions.cpp" line="186" />
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="190"/>
+        <location filename="../common/actions.cpp" line="190" />
         <source>Encodings</source>
-        <translation type="unfinished"></translation>
+        <translation>エンコーディング</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="258"/>
+        <location filename="../common/actions.cpp" line="258" />
         <source>Screenshot</source>
         <translation>スクリーンショット</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="259"/>
+        <location filename="../common/actions.cpp" line="259" />
         <source>Film Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>映画のスクリーンショット</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="260"/>
+        <location filename="../common/actions.cpp" line="260" />
         <source>Burst Shooting</source>
-        <translation type="unfinished"></translation>
+        <translation>バースト撮影</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="267"/>
+        <location filename="../common/actions.cpp" line="267" />
         <source>Playlist</source>
         <translation>プレイリスト</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="268"/>
+        <location filename="../common/actions.cpp" line="268" />
         <source>Film Info</source>
-        <translation type="unfinished"></translation>
+        <translation>映画情報</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="282"/>
+        <location filename="../common/actions.cpp" line="282" />
         <source>Clear playlist</source>
         <translation>プレイリストのクリア</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="283"/>
+        <location filename="../common/actions.cpp" line="283" />
         <source>Display in file manager</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルマネージャーに表示</translation>
     </message>
 </context>
 <context>
     <name>dmr::BurstScreenshotsDialog</name>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="88"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="88" />
         <source>Duration: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>期間: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="94"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="94" />
         <source>Resolution: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>解像度: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="100"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="100" />
         <source>Size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>サイズ: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="123"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="123" />
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -495,234 +494,234 @@
 <context>
     <name>dmr::MainWindow</name>
     <message>
-        <location filename="../common/mainwindow.cpp" line="720"/>
-        <location filename="../common/mainwindow.cpp" line="1831"/>
-        <location filename="../common/mainwindow.cpp" line="2817"/>
+        <location filename="../common/mainwindow.cpp" line="720" />
+        <location filename="../common/mainwindow.cpp" line="1831" />
+        <location filename="../common/mainwindow.cpp" line="2817" />
         <source>Load successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>ロードに成功しました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="720"/>
-        <location filename="../common/mainwindow.cpp" line="1831"/>
-        <location filename="../common/mainwindow.cpp" line="2817"/>
+        <location filename="../common/mainwindow.cpp" line="720" />
+        <location filename="../common/mainwindow.cpp" line="1831" />
+        <location filename="../common/mainwindow.cpp" line="2817" />
         <source>Load failed</source>
-        <translation type="unfinished"></translation>
+        <translation>ロードに失敗しました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1424"/>
+        <location filename="../common/mainwindow.cpp" line="1424" />
         <source>No device found</source>
-        <translation type="unfinished"></translation>
+        <translation>デバイスが見つかりません</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1442"/>
+        <location filename="../common/mainwindow.cpp" line="1442" />
         <source>Parse Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>パースに失敗しました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1449"/>
+        <location filename="../common/mainwindow.cpp" line="1449" />
         <source>Open folder</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダを開く</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1466"/>
-        <location filename="../common/mainwindow.cpp" line="1488"/>
-        <location filename="../common/mainwindow.cpp" line="1826"/>
+        <location filename="../common/mainwindow.cpp" line="1466" />
+        <location filename="../common/mainwindow.cpp" line="1488" />
+        <location filename="../common/mainwindow.cpp" line="1826" />
         <source>Open file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1468"/>
-        <location filename="../common/mainwindow.cpp" line="1490"/>
+        <location filename="../common/mainwindow.cpp" line="1468" />
+        <location filename="../common/mainwindow.cpp" line="1490" />
         <source>All videos (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>すべての動画（%1）</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1694"/>
+        <location filename="../common/mainwindow.cpp" line="1694" />
         <source>Muted</source>
         <translation>消音</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1697"/>
-        <location filename="../common/mainwindow.cpp" line="1709"/>
-        <location filename="../common/mainwindow.cpp" line="1719"/>
-        <location filename="../common/mainwindow.cpp" line="1726"/>
+        <location filename="../common/mainwindow.cpp" line="1697" />
+        <location filename="../common/mainwindow.cpp" line="1709" />
+        <location filename="../common/mainwindow.cpp" line="1719" />
+        <location filename="../common/mainwindow.cpp" line="1726" />
         <source>Volume: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>ボリューム: %1%</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1791"/>
-        <location filename="../common/mainwindow.cpp" line="1799"/>
+        <location filename="../common/mainwindow.cpp" line="1791" />
+        <location filename="../common/mainwindow.cpp" line="1799" />
         <source>Subtitle %1: %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>字幕 %1: %2秒</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1792"/>
-        <location filename="../common/mainwindow.cpp" line="1800"/>
+        <location filename="../common/mainwindow.cpp" line="1792" />
+        <location filename="../common/mainwindow.cpp" line="1800" />
         <source>delayed</source>
-        <translation type="unfinished"></translation>
+        <translation>遅延</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1792"/>
-        <location filename="../common/mainwindow.cpp" line="1800"/>
+        <location filename="../common/mainwindow.cpp" line="1792" />
+        <location filename="../common/mainwindow.cpp" line="1800" />
         <source>advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>高度な</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1807"/>
-        <location filename="../common/mainwindow.cpp" line="1814"/>
-        <location filename="../common/mainwindow.cpp" line="1821"/>
+        <location filename="../common/mainwindow.cpp" line="1807" />
+        <location filename="../common/mainwindow.cpp" line="1814" />
+        <location filename="../common/mainwindow.cpp" line="1821" />
         <source>Speed: %1x</source>
-        <translation type="unfinished"></translation>
+        <translation>スピード: %1倍</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1828"/>
+        <location filename="../common/mainwindow.cpp" line="1828" />
         <source>Subtitle (*.ass *.aqt *.jss *.gsub *.ssf *.srt *.sub *.ssa *.smi *.usf *.idx)</source>
-        <translation type="unfinished"></translation>
+        <translation>字幕 (*.ass *.aqt *.jss *.gsub *.ssf *.srt *.sub *.ssa *.smi *.usf *.idx)</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1890"/>
+        <location filename="../common/mainwindow.cpp" line="1890" />
         <source>View</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1901"/>
+        <location filename="../common/mainwindow.cpp" line="1901" />
         <source>Movie Screenshot</source>
         <translation>映画のスクリーンショット</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1902"/>
+        <location filename="../common/mainwindow.cpp" line="1902" />
         <source>Saved to</source>
-        <translation type="unfinished"></translation>
+        <translation>保存しました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1916"/>
-        <location filename="../common/mainwindow.cpp" line="1999"/>
+        <location filename="../common/mainwindow.cpp" line="1916" />
+        <location filename="../common/mainwindow.cpp" line="1999" />
         <source>The screenshot is saved</source>
-        <translation type="unfinished"></translation>
+        <translation>スクリーンショットは保存されました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1916"/>
+        <location filename="../common/mainwindow.cpp" line="1916" />
         <source>Failed to save the screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>スクリーンショットの保存に失敗しました</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="2086"/>
-        <location filename="../common/mainwindow.cpp" line="2829"/>
+        <location filename="../common/mainwindow.cpp" line="2086" />
+        <location filename="../common/mainwindow.cpp" line="2829" />
         <source>Invalid file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無効なファイル: %1</translation>
     </message>
 </context>
 <context>
     <name>dmr::MovieInfoDialog</name>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="118"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="118" />
         <source>File Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルの種類:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="119"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="119" />
         <source>Resolution:</source>
-        <translation type="unfinished"></translation>
+        <translation>解像度:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="120"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="120" />
         <source>File Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルサイズ：</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="121"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="121" />
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>期間:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="126"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="126" />
         <source>File Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルパス:</translation>
     </message>
 </context>
 <context>
     <name>dmr::MpvProxy</name>
     <message>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038"/>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038" />
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056" />
         <source>[internal]</source>
-        <translation type="unfinished"></translation>
+        <translation>[内部]</translation>
     </message>
 </context>
 <context>
     <name>dmr::PlayItemWidget</name>
     <message>
-        <location filename="../widgets/playlist_widget.cpp" line="192"/>
-        <location filename="../widgets/playlist_widget.cpp" line="227"/>
-        <location filename="../widgets/playlist_widget.cpp" line="402"/>
+        <location filename="../widgets/playlist_widget.cpp" line="192" />
+        <location filename="../widgets/playlist_widget.cpp" line="227" />
+        <location filename="../widgets/playlist_widget.cpp" line="402" />
         <source>File does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルが存在しません</translation>
     </message>
 </context>
 <context>
     <name>dmr::Settings</name>
     <message>
-        <location filename="../common/dmr_settings.cpp" line="156"/>
+        <location filename="../common/dmr_settings.cpp" line="156" />
         <source>%1/DMovie%2.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/DMovie%2.jpg</translation>
     </message>
     <message>
-        <location filename="../common/dmr_settings.cpp" line="162"/>
+        <location filename="../common/dmr_settings.cpp" line="162" />
         <source>%1/DMovie%2(%3).jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/DMovie%2(%3).jpg</translation>
     </message>
 </context>
 <context>
     <name>dmr::ToolboxProxy</name>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="891"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="891" />
         <source>Play</source>
         <translation>再生</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="687"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="687" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Previous</source>
         <translation>前へ</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="688"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="688" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Next</source>
         <translation>次へ</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="689"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="689" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
         <source>Subtitles</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="690"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="690" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
         <source>Playlist</source>
         <translation>プレイリスト</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="691"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="878"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="691" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="878" />
         <source>Fullscreen</source>
         <translation>フルスクリーンにする</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="685"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="685" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Play/Pause</source>
         <translation>再生・一時停止</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="875"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="875" />
         <source>Exit fullscreen</source>
         <translation>フルスクリーンを解除</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="888"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="888" />
         <source>Pause</source>
         <translation>一時停止</translation>
     </message>

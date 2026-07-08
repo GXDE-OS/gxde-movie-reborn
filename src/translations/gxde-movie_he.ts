@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
+<?xml version='1.0' encoding='utf-8'?>
 <TS version="2.1" language="he">
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="88"/>
-        <location filename="../main.cpp" line="120"/>
+        <location filename="../main.cpp" line="88" />
+        <location filename="../main.cpp" line="120" />
         <source>GXDE Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>ג'קסדי סרט</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="89" />
         <source>GXDE Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>GXDE Movie הוא נגן וידאו מעוצב היטב ובעל תכונות מלאות עם עיצוב פשוט ללא גבולות. הוא תומך בשיחוק מדיה מקומית וזרמת מדיה עם פורמטי וידאו רבים.</translation>
     </message>
     <message>
         <source>Deepin Movie</source>
@@ -23,448 +22,448 @@
         <translation type="vanished">Deepin Movie הוא נגן וידאו עשיר ומעוצב, התומך בניגון קבצים מקומיים ומוזרמים בפורמטים שונים</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="116"/>
+        <location filename="../common/mainwindow.cpp" line="116" />
         <source>Invalid folder</source>
-        <translation type="unfinished"></translation>
+        <translation>תיקייה לא חוקית</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="130"/>
+        <location filename="../common/mainwindow.cpp" line="130" />
         <source>Open folder</source>
         <translation>פתח תיקייה</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="121"/>
-        <source>You don&apos;t have permission to operate this folder</source>
-        <translation type="unfinished"></translation>
+        <location filename="../common/mainwindow.cpp" line="121" />
+        <source>You don't have permission to operate this folder</source>
+        <translation>אין לך הרשאה לפעול על התיקייה הזו</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="5"/>
+        <location filename="../common/settings_translation.cpp" line="5" />
         <source>Auto add similar files to play</source>
-        <translation type="unfinished"></translation>
+        <translation>הוספת קבצים דומים לאוטומטית</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="6"/>
+        <location filename="../common/settings_translation.cpp" line="6" />
         <source>Clear playlist when exit</source>
-        <translation type="unfinished"></translation>
+        <translation>רוקן רשימת השמעה בעת יציאה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="7"/>
+        <location filename="../common/settings_translation.cpp" line="7" />
         <source>Show video preview on mouseover</source>
-        <translation type="unfinished"></translation>
+        <translation>הצגת תצוגה מקדימה של וידאו בעת העברת העכבר</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="8"/>
+        <location filename="../common/settings_translation.cpp" line="8" />
         <source>Open a new player for each file played</source>
-        <translation type="unfinished"></translation>
+        <translation>פתח שחקן חדש לכל קובץ שנשמע</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="9"/>
+        <location filename="../common/settings_translation.cpp" line="9" />
         <source>Pause when minimized</source>
         <translation>השהה ניגון כאשר ממוזער</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="10"/>
+        <location filename="../common/settings_translation.cpp" line="10" />
         <source>Remember playback position</source>
-        <translation type="unfinished"></translation>
+        <translation>זכור את מיקום השמעה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="11"/>
+        <location filename="../common/settings_translation.cpp" line="11" />
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>דרך</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="12"/>
+        <location filename="../common/settings_translation.cpp" line="12" />
         <source>Basic</source>
         <translation>בסיסי</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="13"/>
+        <location filename="../common/settings_translation.cpp" line="13" />
         <source>Play</source>
         <translation>נגינה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="14"/>
-        <location filename="../common/settings_translation.cpp" line="19"/>
+        <location filename="../common/settings_translation.cpp" line="14" />
+        <location filename="../common/settings_translation.cpp" line="19" />
         <source>Screenshot</source>
         <translation>צילום מסך</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="15"/>
+        <location filename="../common/settings_translation.cpp" line="15" />
         <source>Shortcuts</source>
         <translation>קיצורי מקשים</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="16"/>
+        <location filename="../common/settings_translation.cpp" line="16" />
         <source>File</source>
         <translation>קובץ</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="17"/>
+        <location filename="../common/settings_translation.cpp" line="17" />
         <source>Frame/Sound</source>
         <translation>פריים/שמע</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="18"/>
+        <location filename="../common/settings_translation.cpp" line="18" />
         <source>Playback</source>
         <translation>השמעה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="20"/>
-        <location filename="../common/settings_translation.cpp" line="21"/>
+        <location filename="../common/settings_translation.cpp" line="20" />
+        <location filename="../common/settings_translation.cpp" line="21" />
         <source>Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>תרגום</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="22"/>
+        <location filename="../common/settings_translation.cpp" line="22" />
         <source>Font Style</source>
-        <translation type="unfinished"></translation>
+        <translation>גופן סגנון</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="23"/>
+        <location filename="../common/settings_translation.cpp" line="23" />
         <source>Restore Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>שחזר ברירת מחדל</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="24"/>
+        <location filename="../common/settings_translation.cpp" line="24" />
         <source>Open file</source>
         <translation>פתח קובץ</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="25"/>
+        <location filename="../common/settings_translation.cpp" line="25" />
         <source>Open next</source>
         <translation>פתח את הבא</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="26"/>
+        <location filename="../common/settings_translation.cpp" line="26" />
         <source>Open previous</source>
         <translation>פתח את הקודם</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="27"/>
+        <location filename="../common/settings_translation.cpp" line="27" />
         <source>Mini mode</source>
         <translation>מצב מוקטן</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="28"/>
+        <location filename="../common/settings_translation.cpp" line="28" />
         <source>Mute</source>
         <translation>השתקה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="29"/>
+        <location filename="../common/settings_translation.cpp" line="29" />
         <source>Next frame</source>
-        <translation type="unfinished"></translation>
+        <translation>המשך מסגרת</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="30"/>
+        <location filename="../common/settings_translation.cpp" line="30" />
         <source>Previous frame</source>
-        <translation type="unfinished"></translation>
+        <translation>הפריט הקודם</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="31"/>
+        <location filename="../common/settings_translation.cpp" line="31" />
         <source>Volume down</source>
         <translation>הנמכה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="32"/>
+        <location filename="../common/settings_translation.cpp" line="32" />
         <source>Volume up</source>
         <translation>הגברה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="33"/>
+        <location filename="../common/settings_translation.cpp" line="33" />
         <source>Speed up</source>
         <translation>העלה מהירות</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="34"/>
+        <location filename="../common/settings_translation.cpp" line="34" />
         <source>Speed down</source>
-        <translation type="unfinished"></translation>
+        <translation>מהירות למטה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="35"/>
+        <location filename="../common/settings_translation.cpp" line="35" />
         <source>Fullscreen</source>
         <translation>מסך מלא</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="36"/>
+        <location filename="../common/settings_translation.cpp" line="36" />
         <source>Pause/Play</source>
         <translation>השהה/נגן</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="37"/>
+        <location filename="../common/settings_translation.cpp" line="37" />
         <source>Playlist</source>
         <translation>רשימת נגינה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="38"/>
+        <location filename="../common/settings_translation.cpp" line="38" />
         <source>Reset speed</source>
-        <translation type="unfinished"></translation>
+        <translation>איפוס מהירות</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="39"/>
+        <location filename="../common/settings_translation.cpp" line="39" />
         <source>Rewind</source>
         <translation>אחורה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="40"/>
+        <location filename="../common/settings_translation.cpp" line="40" />
         <source>Forward</source>
         <translation>קדימה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="41"/>
+        <location filename="../common/settings_translation.cpp" line="41" />
         <source>Burst screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>תמונה מידית</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="42"/>
+        <location filename="../common/settings_translation.cpp" line="42" />
         <source>Film screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>תמונה מסרט</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="43"/>
+        <location filename="../common/settings_translation.cpp" line="43" />
         <source>0.5s backward</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 שניות אחורה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="44"/>
+        <location filename="../common/settings_translation.cpp" line="44" />
         <source>0.5s forward</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 שניות קדימה</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="45"/>
+        <location filename="../common/settings_translation.cpp" line="45" />
         <source>Font</source>
         <translation>גופן</translation>
     </message>
     <message>
-        <location filename="../common/settings_translation.cpp" line="46"/>
+        <location filename="../common/settings_translation.cpp" line="46" />
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל גופן</translation>
     </message>
 </context>
 <context>
     <name>UrlDialog</name>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="41"/>
+        <location filename="../widgets/url_dialog.cpp" line="41" />
         <source>Cancel</source>
         <translation>ביטול</translation>
     </message>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="42"/>
+        <location filename="../widgets/url_dialog.cpp" line="42" />
         <source>Confirm</source>
         <translation>אימות</translation>
     </message>
     <message>
-        <location filename="../widgets/url_dialog.cpp" line="46"/>
+        <location filename="../widgets/url_dialog.cpp" line="46" />
         <source>Please enter the URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>אנא הכנס את הכתובת:</translation>
     </message>
 </context>
 <context>
     <name>dmr::ActionFactory</name>
     <message>
-        <location filename="../common/actions.cpp" line="84"/>
-        <location filename="../common/actions.cpp" line="269"/>
+        <location filename="../common/actions.cpp" line="84" />
+        <location filename="../common/actions.cpp" line="269" />
         <source>Settings</source>
         <translation>הגדרות</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="108"/>
+        <location filename="../common/actions.cpp" line="108" />
         <source>Fullscreen</source>
         <translation>מסך מלא</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="110"/>
+        <location filename="../common/actions.cpp" line="110" />
         <source>Always on Top</source>
-        <translation type="unfinished"></translation>
+        <translation>תמיד מעל הכל</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="284"/>
+        <location filename="../common/actions.cpp" line="284" />
         <source>Film info</source>
-        <translation type="unfinished"></translation>
+        <translation>מידע על הסרט</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="82"/>
-        <location filename="../common/actions.cpp" line="102"/>
+        <location filename="../common/actions.cpp" line="82" />
+        <location filename="../common/actions.cpp" line="102" />
         <source>Open file</source>
         <translation>פתח קובץ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="83"/>
-        <location filename="../common/actions.cpp" line="103"/>
+        <location filename="../common/actions.cpp" line="83" />
+        <location filename="../common/actions.cpp" line="103" />
         <source>Open folder</source>
         <translation>פתח תיקייה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="85"/>
+        <location filename="../common/actions.cpp" line="85" />
         <source>Light theme</source>
-        <translation type="unfinished"></translation>
+        <translation>תמה בהירה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="104"/>
+        <location filename="../common/actions.cpp" line="104" />
         <source>Open URL</source>
         <translation>פתח קישור</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="105"/>
+        <location filename="../common/actions.cpp" line="105" />
         <source>Open CD/DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>פתח תקליטור/דיסק</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="109"/>
+        <location filename="../common/actions.cpp" line="109" />
         <source>Mini Mode</source>
         <translation>מצג מוקטן</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="115"/>
+        <location filename="../common/actions.cpp" line="115" />
         <source>Play Mode</source>
         <translation>מצב נגינה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="118"/>
+        <location filename="../common/actions.cpp" line="118" />
         <source>Order Play</source>
-        <translation type="unfinished"></translation>
+        <translation>הזמן משחק</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="119"/>
+        <location filename="../common/actions.cpp" line="119" />
         <source>Shuffle Play</source>
-        <translation type="unfinished"></translation>
+        <translation>שיחוק אקראי</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="120"/>
+        <location filename="../common/actions.cpp" line="120" />
         <source>Single Play</source>
-        <translation type="unfinished"></translation>
+        <translation>משחק יחיד</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="121"/>
+        <location filename="../common/actions.cpp" line="121" />
         <source>Single Loop</source>
-        <translation type="unfinished"></translation>
+        <translation>חלוקה אחת</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="122"/>
+        <location filename="../common/actions.cpp" line="122" />
         <source>List Loop</source>
-        <translation type="unfinished"></translation>
+        <translation>רשימה לולאה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="129"/>
+        <location filename="../common/actions.cpp" line="129" />
         <source>Frame</source>
         <translation>פריים</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="132"/>
+        <location filename="../common/actions.cpp" line="132" />
         <source>Default</source>
         <translation>ברירת מחדל</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="140"/>
+        <location filename="../common/actions.cpp" line="140" />
         <source>Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>שעון כיוון</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="141"/>
+        <location filename="../common/actions.cpp" line="141" />
         <source>Counterclockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>לעומת כיוון השעון</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="144"/>
+        <location filename="../common/actions.cpp" line="144" />
         <source>Next frame</source>
-        <translation type="unfinished"></translation>
+        <translation>המשך מסגרת</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="145"/>
+        <location filename="../common/actions.cpp" line="145" />
         <source>Previous frame</source>
-        <translation type="unfinished"></translation>
+        <translation>הפריט הקודם</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="152"/>
+        <location filename="../common/actions.cpp" line="152" />
         <source>Sound</source>
         <translation>שמע</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="155"/>
+        <location filename="../common/actions.cpp" line="155" />
         <source>Channel</source>
         <translation>ערוץ</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="158"/>
+        <location filename="../common/actions.cpp" line="158" />
         <source>Stereo</source>
-        <translation type="unfinished"></translation>
+        <translation>סטריאו</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="159"/>
+        <location filename="../common/actions.cpp" line="159" />
         <source>Left channel</source>
-        <translation type="unfinished"></translation>
+        <translation>שמאל</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="160"/>
+        <location filename="../common/actions.cpp" line="160" />
         <source>Right channel</source>
-        <translation type="unfinished"></translation>
+        <translation>ערוץ ימין</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="166"/>
+        <location filename="../common/actions.cpp" line="166" />
         <source>Track</source>
         <translation>קטע</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="176"/>
+        <location filename="../common/actions.cpp" line="176" />
         <source>Subtitle</source>
-        <translation type="unfinished"></translation>
+        <translation>תרגום</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="177"/>
+        <location filename="../common/actions.cpp" line="177" />
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>טען</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="178"/>
+        <location filename="../common/actions.cpp" line="178" />
         <source>Online Search</source>
-        <translation type="unfinished"></translation>
+        <translation>חיפוש באינטרנט</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="182"/>
+        <location filename="../common/actions.cpp" line="182" />
         <source>Select</source>
         <translation>בחר</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="186"/>
+        <location filename="../common/actions.cpp" line="186" />
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>הסתר</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="190"/>
+        <location filename="../common/actions.cpp" line="190" />
         <source>Encodings</source>
-        <translation type="unfinished"></translation>
+        <translation>קידודים</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="258"/>
+        <location filename="../common/actions.cpp" line="258" />
         <source>Screenshot</source>
         <translation>צילום מסך</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="259"/>
+        <location filename="../common/actions.cpp" line="259" />
         <source>Film Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>תמונה מסרט</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="260"/>
+        <location filename="../common/actions.cpp" line="260" />
         <source>Burst Shooting</source>
-        <translation type="unfinished"></translation>
+        <translation>צילום רצף</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="267"/>
+        <location filename="../common/actions.cpp" line="267" />
         <source>Playlist</source>
         <translation>רשימת נגינה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="268"/>
+        <location filename="../common/actions.cpp" line="268" />
         <source>Film Info</source>
-        <translation type="unfinished"></translation>
+        <translation>מידע על הסרט</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="282"/>
+        <location filename="../common/actions.cpp" line="282" />
         <source>Clear playlist</source>
         <translation>נקה רשימת השמעה</translation>
     </message>
     <message>
-        <location filename="../common/actions.cpp" line="283"/>
+        <location filename="../common/actions.cpp" line="283" />
         <source>Display in file manager</source>
         <translation>הצגה במנהל הקבצים</translation>
     </message>
@@ -472,22 +471,22 @@
 <context>
     <name>dmr::BurstScreenshotsDialog</name>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="88"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="88" />
         <source>Duration: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>משך: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="94"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="94" />
         <source>Resolution: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>התקן: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="100"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="100" />
         <source>Size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל: %1</translation>
     </message>
     <message>
-        <location filename="../widgets/burst_screenshots_dialog.cpp" line="123"/>
+        <location filename="../widgets/burst_screenshots_dialog.cpp" line="123" />
         <source>Save</source>
         <translation>שמור</translation>
     </message>
@@ -495,234 +494,234 @@
 <context>
     <name>dmr::MainWindow</name>
     <message>
-        <location filename="../common/mainwindow.cpp" line="720"/>
-        <location filename="../common/mainwindow.cpp" line="1831"/>
-        <location filename="../common/mainwindow.cpp" line="2817"/>
+        <location filename="../common/mainwindow.cpp" line="720" />
+        <location filename="../common/mainwindow.cpp" line="1831" />
+        <location filename="../common/mainwindow.cpp" line="2817" />
         <source>Load successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>ההטעיה הצליחה</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="720"/>
-        <location filename="../common/mainwindow.cpp" line="1831"/>
-        <location filename="../common/mainwindow.cpp" line="2817"/>
+        <location filename="../common/mainwindow.cpp" line="720" />
+        <location filename="../common/mainwindow.cpp" line="1831" />
+        <location filename="../common/mainwindow.cpp" line="2817" />
         <source>Load failed</source>
-        <translation type="unfinished"></translation>
+        <translation>טעיית טעינה</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1424"/>
+        <location filename="../common/mainwindow.cpp" line="1424" />
         <source>No device found</source>
-        <translation type="unfinished"></translation>
+        <translation>אין מכשיר נמצא</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1442"/>
+        <location filename="../common/mainwindow.cpp" line="1442" />
         <source>Parse Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה בעיבוד</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1449"/>
+        <location filename="../common/mainwindow.cpp" line="1449" />
         <source>Open folder</source>
         <translation>פתח תיקייה</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1466"/>
-        <location filename="../common/mainwindow.cpp" line="1488"/>
-        <location filename="../common/mainwindow.cpp" line="1826"/>
+        <location filename="../common/mainwindow.cpp" line="1466" />
+        <location filename="../common/mainwindow.cpp" line="1488" />
+        <location filename="../common/mainwindow.cpp" line="1826" />
         <source>Open file</source>
         <translation>פתח קובץ</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1468"/>
-        <location filename="../common/mainwindow.cpp" line="1490"/>
+        <location filename="../common/mainwindow.cpp" line="1468" />
+        <location filename="../common/mainwindow.cpp" line="1490" />
         <source>All videos (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>כל הסרטונים (%1)</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1694"/>
+        <location filename="../common/mainwindow.cpp" line="1694" />
         <source>Muted</source>
         <translation>מושתק</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1697"/>
-        <location filename="../common/mainwindow.cpp" line="1709"/>
-        <location filename="../common/mainwindow.cpp" line="1719"/>
-        <location filename="../common/mainwindow.cpp" line="1726"/>
+        <location filename="../common/mainwindow.cpp" line="1697" />
+        <location filename="../common/mainwindow.cpp" line="1709" />
+        <location filename="../common/mainwindow.cpp" line="1719" />
+        <location filename="../common/mainwindow.cpp" line="1726" />
         <source>Volume: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>נפח: %1%</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1791"/>
-        <location filename="../common/mainwindow.cpp" line="1799"/>
+        <location filename="../common/mainwindow.cpp" line="1791" />
+        <location filename="../common/mainwindow.cpp" line="1799" />
         <source>Subtitle %1: %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>תרגיל %1: %2 שניות</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1792"/>
-        <location filename="../common/mainwindow.cpp" line="1800"/>
+        <location filename="../common/mainwindow.cpp" line="1792" />
+        <location filename="../common/mainwindow.cpp" line="1800" />
         <source>delayed</source>
-        <translation type="unfinished"></translation>
+        <translation>איחור</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1792"/>
-        <location filename="../common/mainwindow.cpp" line="1800"/>
+        <location filename="../common/mainwindow.cpp" line="1792" />
+        <location filename="../common/mainwindow.cpp" line="1800" />
         <source>advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>מתקדם</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1807"/>
-        <location filename="../common/mainwindow.cpp" line="1814"/>
-        <location filename="../common/mainwindow.cpp" line="1821"/>
+        <location filename="../common/mainwindow.cpp" line="1807" />
+        <location filename="../common/mainwindow.cpp" line="1814" />
+        <location filename="../common/mainwindow.cpp" line="1821" />
         <source>Speed: %1x</source>
-        <translation type="unfinished"></translation>
+        <translation>מהירות: %1x</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1828"/>
+        <location filename="../common/mainwindow.cpp" line="1828" />
         <source>Subtitle (*.ass *.aqt *.jss *.gsub *.ssf *.srt *.sub *.ssa *.smi *.usf *.idx)</source>
-        <translation type="unfinished"></translation>
+        <translation>תרגום (*.ass *.aqt *.jss *.gsub *.ssf *.srt *.sub *.ssa *.smi *.usf *.idx)</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1890"/>
+        <location filename="../common/mainwindow.cpp" line="1890" />
         <source>View</source>
         <translation>תצוגה</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1901"/>
+        <location filename="../common/mainwindow.cpp" line="1901" />
         <source>Movie Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>תמונה מהסרט</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1902"/>
+        <location filename="../common/mainwindow.cpp" line="1902" />
         <source>Saved to</source>
-        <translation type="unfinished"></translation>
+        <translation>נשמר</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1916"/>
-        <location filename="../common/mainwindow.cpp" line="1999"/>
+        <location filename="../common/mainwindow.cpp" line="1916" />
+        <location filename="../common/mainwindow.cpp" line="1999" />
         <source>The screenshot is saved</source>
-        <translation type="unfinished"></translation>
+        <translation>הצליל נשמר</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="1916"/>
+        <location filename="../common/mainwindow.cpp" line="1916" />
         <source>Failed to save the screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>נכשל לשמור את צילום המסך</translation>
     </message>
     <message>
-        <location filename="../common/mainwindow.cpp" line="2086"/>
-        <location filename="../common/mainwindow.cpp" line="2829"/>
+        <location filename="../common/mainwindow.cpp" line="2086" />
+        <location filename="../common/mainwindow.cpp" line="2829" />
         <source>Invalid file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>קובץ לא חוקי: %1</translation>
     </message>
 </context>
 <context>
     <name>dmr::MovieInfoDialog</name>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="118"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="118" />
         <source>File Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>סוג הקובץ:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="119"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="119" />
         <source>Resolution:</source>
-        <translation type="unfinished"></translation>
+        <translation>התקשרות</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="120"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="120" />
         <source>File Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>גודל הקובץ:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="121"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="121" />
         <source>Duration:</source>
         <translation>משך:</translation>
     </message>
     <message>
-        <location filename="../widgets/movieinfo_dialog.cpp" line="126"/>
+        <location filename="../widgets/movieinfo_dialog.cpp" line="126" />
         <source>File Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>נתיב הקובץ:</translation>
     </message>
 </context>
 <context>
     <name>dmr::MpvProxy</name>
     <message>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038"/>
-        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056"/>
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1038" />
+        <location filename="../backends/mpv/mpv_proxy.cpp" line="1056" />
         <source>[internal]</source>
-        <translation type="unfinished"></translation>
+        <translation>[internal]</translation>
     </message>
 </context>
 <context>
     <name>dmr::PlayItemWidget</name>
     <message>
-        <location filename="../widgets/playlist_widget.cpp" line="192"/>
-        <location filename="../widgets/playlist_widget.cpp" line="227"/>
-        <location filename="../widgets/playlist_widget.cpp" line="402"/>
+        <location filename="../widgets/playlist_widget.cpp" line="192" />
+        <location filename="../widgets/playlist_widget.cpp" line="227" />
+        <location filename="../widgets/playlist_widget.cpp" line="402" />
         <source>File does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>הקובץ לא קיים</translation>
     </message>
 </context>
 <context>
     <name>dmr::Settings</name>
     <message>
-        <location filename="../common/dmr_settings.cpp" line="156"/>
+        <location filename="../common/dmr_settings.cpp" line="156" />
         <source>%1/DMovie%2.jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/דמווי%2.jpg</translation>
     </message>
     <message>
-        <location filename="../common/dmr_settings.cpp" line="162"/>
+        <location filename="../common/dmr_settings.cpp" line="162" />
         <source>%1/DMovie%2(%3).jpg</source>
-        <translation type="unfinished"></translation>
+        <translation>%1/דמווי%2(%3).jpg</translation>
     </message>
 </context>
 <context>
     <name>dmr::ToolboxProxy</name>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="891"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="891" />
         <source>Play</source>
         <translation>נגינה</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="687"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="687" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Previous</source>
         <translation>הקודם</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="688"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="688" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Next</source>
         <translation>הבא</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="689"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="689" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
         <source>Subtitles</source>
         <translation>כתוביות</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="690"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="690" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
         <source>Playlist</source>
         <translation>רשימת נגינה</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="691"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="699"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="878"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="691" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="699" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="878" />
         <source>Fullscreen</source>
         <translation>מסך מלא</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="685"/>
-        <location filename="../widgets/toolbox_proxy.cpp" line="698"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="685" />
+        <location filename="../widgets/toolbox_proxy.cpp" line="698" />
         <source>Play/Pause</source>
         <translation>נגינה/השהיה</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="875"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="875" />
         <source>Exit fullscreen</source>
         <translation>צא ממסך מלא</translation>
     </message>
     <message>
-        <location filename="../widgets/toolbox_proxy.cpp" line="888"/>
+        <location filename="../widgets/toolbox_proxy.cpp" line="888" />
         <source>Pause</source>
         <translation>השהיה</translation>
     </message>
