@@ -60,6 +60,10 @@ int main(int argc, char *argv[])
     DWIDGET_INIT_RESOURCE();
 #endif
 
+    // 使用 XWayland 运行
+    qputenv("XDG_SESSION_TYPE", "x11");
+    qputenv("WAYLAND_DISPLAY", "");
+
     DApplication app(argc, argv);
 
     // required by mpv
