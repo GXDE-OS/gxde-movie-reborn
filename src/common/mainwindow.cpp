@@ -421,6 +421,9 @@ skip_set_cursor:
                     sz = QSize(mi.width, mi.height);
                 }
 
+                if (sz.width() <= 0 || sz.height() <= 0) {
+                    return;
+                }
                 ratio = sz.width() / (qreal)sz.height();
                 switch (edge) {
                     case Utility::TopLeftCorner:
@@ -1460,7 +1463,7 @@ void MainWindow::requestAction(ActionFactory::ActionKind kd, bool fromUI,
         case ActionFactory::ActionKind::OpenFileList: {
             QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Open file"),
                     lastOpenedPath(),
-                    tr("All videos (%1)").arg(_engine->video_filetypes.join(" ")), 0,
+                    tr("All supported files (%1)").arg((_engine->video_filetypes + _engine->audio_filetypes).join(" ")), 0,
                     QFileDialog::HideNameFilterDetails);
 
             QList<QUrl> urls;
@@ -1482,7 +1485,7 @@ void MainWindow::requestAction(ActionFactory::ActionKind kd, bool fromUI,
         case ActionFactory::ActionKind::OpenFile: {
             QString filename = QFileDialog::getOpenFileName(this, tr("Open file"),
                     lastOpenedPath(),
-                    tr("All videos (%1)").arg(_engine->video_filetypes.join(" ")), 0,
+                    tr("All supported files (%1)").arg((_engine->video_filetypes + _engine->audio_filetypes).join(" ")), 0,
                     QFileDialog::HideNameFilterDetails);
             QFileInfo fileInfo(filename);
             if (fileInfo.exists()) {
@@ -2336,6 +2339,10 @@ void MainWindow::resizeByConstraints(bool forceCentered)
         qDebug() << mi.width << mi.height;
     }
 
+    if (sz.width() <= 0 || sz.height() <= 0) {
+        return;
+    }
+
     auto geom = QGuiApplication::primaryScreen()->availableGeometry();
     if (sz.width() > geom.width() || sz.height() > geom.height()) {
         sz.scale(geom.width(), geom.height(), Qt::KeepAspectRatio);
@@ -2368,13 +2375,17 @@ void MainWindow::updateSizeConstraints()
     } else {
         if (_engine->state() != PlayerEngine::CoreState::Idle) {
             auto sz = _engine->videoSize();
-            qreal ratio = (qreal)sz.width() / sz.height();
-            if (sz.width() > sz.height()) {
-                int h = 528 / ratio;
-                m = QSize(528, h);
+            if (sz.width() > 0 && sz.height() > 0) {
+                qreal ratio = (qreal)sz.width() / sz.height();
+                if (sz.width() > sz.height()) {
+                    int h = 528 / ratio;
+                    m = QSize(528, h);
+                } else {
+                    int w = 528 * ratio;
+                    m = QSize(w, 528);
+                }
             } else {
-                int w = 528 * ratio;
-                m = QSize(w, 528);
+                m = QSize(630, 386);
             }
         } else {
             m = QSize(630, 386);

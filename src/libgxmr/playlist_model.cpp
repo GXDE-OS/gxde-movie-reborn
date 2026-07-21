@@ -301,19 +301,24 @@ struct MovieInfo MovieInfo::parseFromFile(const QFileInfo& fi, bool *ok)
         if (ok) *ok = false;
         return mi;
     } 
-    if (open_codec_context(&stream_id, &dec_ctx, av_ctx, AVMEDIA_TYPE_VIDEO) < 0) {
-        if (ok) *ok = false;
-        return mi;
+
+    bool is_video = (open_codec_context(&stream_id, &dec_ctx, av_ctx, AVMEDIA_TYPE_VIDEO) == 0);
+
+    if (!is_video) {
+        if (open_codec_context(&stream_id, &dec_ctx, av_ctx, AVMEDIA_TYPE_AUDIO) < 0) {
+            if (ok) *ok = false;
+            return mi;
+        }
     }
 
     av_dump_format(av_ctx, 0, fi.fileName().toUtf8().constData(), 0);
 
-    mi.width = dec_ctx->width;
-    mi.height = dec_ctx->height;
+    mi.width = is_video ? dec_ctx->width : 0;
+    mi.height = is_video ? dec_ctx->height : 0;
     auto duration = av_ctx->duration == AV_NOPTS_VALUE ? 0 : av_ctx->duration;
     duration = duration + (duration <= INT64_MAX - 5000 ? 5000 : 0);
     mi.duration = duration / AV_TIME_BASE;
-    mi.resolution = QString("%1x%2").arg(mi.width).arg(mi.height);
+    mi.resolution = is_video ? QString("%1x%2").arg(mi.width).arg(mi.height) : QString();
     mi.title = fi.fileName(); //FIXME this
     mi.filePath = fi.canonicalFilePath();
     mi.creation = fi.created().toString();
@@ -331,18 +336,20 @@ struct MovieInfo MovieInfo::parseFromFile(const QFileInfo& fi, bool *ok)
         qDebug() << "tag:" << tag->key << tag->value;
     }
 
-    tag = NULL;
-    AVStream *st = av_ctx->streams[stream_id];
-    while ((tag = av_dict_get(st->metadata, "", tag, AV_DICT_IGNORE_SUFFIX)) != NULL) {
-        if (tag->key && strcmp(tag->key, "rotate") == 0) {
-            mi.raw_rotate = QString(tag->value).toInt();
-            auto vr = (mi.raw_rotate + 360) % 360;
-            if (vr == 90 || vr == 270) {
-                auto tmp = mi.height; mi.height = mi.width; mi.width = tmp; 
+    if (is_video) {
+        tag = NULL;
+        AVStream *st = av_ctx->streams[stream_id];
+        while ((tag = av_dict_get(st->metadata, "", tag, AV_DICT_IGNORE_SUFFIX)) != NULL) {
+            if (tag->key && strcmp(tag->key, "rotate") == 0) {
+                mi.raw_rotate = QString(tag->value).toInt();
+                auto vr = (mi.raw_rotate + 360) % 360;
+                if (vr == 90 || vr == 270) {
+                    auto tmp = mi.height; mi.height = mi.width; mi.width = tmp; 
+                }
+                break;
             }
-            break;
+            qDebug() << "tag:" << tag->key << tag->value;
         }
-        qDebug() << "tag:" << tag->key << tag->value;
     }
 
     avformat_close_input(&av_ctx);

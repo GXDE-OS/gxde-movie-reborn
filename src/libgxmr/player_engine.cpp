@@ -167,7 +167,8 @@ static const QStringList& buildPlayableDatabase()
 bool PlayerEngine::isPlayableFile(const QString& name)
 {
     auto suffix = QString("*") + name.mid(name.lastIndexOf('.'));
-    return video_filetypes.contains(suffix, Qt::CaseInsensitive);
+    return video_filetypes.contains(suffix, Qt::CaseInsensitive) ||
+           audio_filetypes.contains(suffix, Qt::CaseInsensitive);
 }
 
 void PlayerEngine::updateSubStyles()
