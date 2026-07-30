@@ -59,10 +59,17 @@ int main(int argc, char *argv[])
 #if defined(STATIC_LIB)
     DWIDGET_INIT_RESOURCE();
 #endif
+    // 新增检测方法，修复在 x11 下特效丢失的问题
+    bool waylandSession = (qgetenv("XDG_SESSION_TYPE") == "wayland") || 
+                      qEnvironmentVariableIsSet("WAYLAND_DISPLAY");
 
-    // 使用 XWayland 运行
-    qputenv("XDG_SESSION_TYPE", "x11");
-    qputenv("WAYLAND_DISPLAY", "");
+    if (waylandSession) {
+        // 使用 XWayland 运行
+        qputenv("XDG_SESSION_TYPE", "x11");
+        qputenv("WAYLAND_DISPLAY", "");
+    }else{
+        DApplication::loadDXcbPlugin();
+    }
 
     DApplication app(argc, argv);
 
