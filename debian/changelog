@@ -1,3 +1,10 @@
+gxde-movie-reborn (4.0.4) UNRELEASED; urgency=medium
+
+  [ zeqi ]
+  * 修复在 x11 下特效丢失的问题
+
+ -- zeqi <a202128502@163.com>  Thu, 30 Jul 2026 12:24:56 +0800
+
 gxde-movie-reborn (4.0.3) UNRELEASED; urgency=medium
 
   [ CharOfString ]
