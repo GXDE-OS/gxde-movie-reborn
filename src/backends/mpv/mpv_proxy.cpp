@@ -207,7 +207,7 @@ mpv_handle* MpvProxy::mpv_init()
     //set_property(h, "no-keepaspect", "true");
 
     if (composited) {
-        set_property(h, "vo", "opengl-cb");
+        set_property(h, "vo", "libmpv");
 
     } else {
         set_property(h, "vo", "opengl,xv,x11");
@@ -265,6 +265,15 @@ mpv_handle* MpvProxy::mpv_init()
     auto p = ol.begin();
     while (p != ol.end()) {
         if (!p->first.startsWith("#")) {
+            // The render API owns the video output.  A profile intended for
+            // For native-window path profile then we must NOT replace it with
+            // standalone VO. Then we need to ignore it.
+            if (composited && p->first == QLatin1String("vo")) {
+                qDebug() << "ignore render API incompatible profile option"
+                    << p->first << "=" << p->second;
+                ++p;
+                continue;
+            }
             set_property(h, p->first.toUtf8().constData(), p->second.toUtf8().constData());
             qDebug() << "apply" << p->first << "=" << p->second;
         } else {
@@ -1095,4 +1104,3 @@ void MpvProxy::setProperty(const QString& name, const QVariant& val)
 }
 
 } // end of namespace dmr
-

@@ -62,7 +62,8 @@ const char kAtomNameWmSkipPager[] = "_NET_WM_STATE_SKIP_PAGER";
 
 xcb_atom_t Utility::internAtom(const char *name)
 {
-    if (!name || *name == 0)
+    if (!QX11Info::isPlatformX11() || !QX11Info::connection()
+            || !name || *name == 0)
         return XCB_NONE;
 
     xcb_intern_atom_cookie_t cookie = xcb_intern_atom(QX11Info::connection(), true, strlen(name), name);
@@ -89,6 +90,9 @@ void Utility::cancelWindowMoveResize(quint32 WId)
 
 void Utility::updateMousePointForWindowMove(quint32 WId, const QPoint &globalPos)
 {
+    if (!QX11Info::isPlatformX11() || !QX11Info::connection())
+        return;
+
     xcb_client_message_event_t xev;
 
     xev.response_type = XCB_CLIENT_MESSAGE;
@@ -110,6 +114,9 @@ void Utility::updateMousePointForWindowMove(quint32 WId, const QPoint &globalPos
 
 void Utility::setFrameExtents(quint32 WId, const QMargins &margins)
 {
+    if (!QX11Info::isPlatformX11() || !QX11Info::connection())
+        return;
+
     xcb_atom_t frameExtents = internAtom("_GTK_FRAME_EXTENTS");
 
     if (frameExtents == XCB_NONE) {
@@ -134,6 +141,9 @@ void Utility::setRectangles(quint32 WId, const QRegion &region, bool onlyInput)
 
 void Utility::setRectangles(quint32 WId, const QVector<xcb_rectangle_t> &rectangles, bool onlyInput)
 {
+    if (!QX11Info::isPlatformX11() || !QX11Info::connection())
+        return;
+
     if (rectangles.isEmpty()) {
         xcb_shape_mask(QX11Info::connection(), XCB_SHAPE_SO_SET,
                        onlyInput ? XCB_SHAPE_SK_INPUT : XCB_SHAPE_SK_BOUNDING, WId, 0, 0, XCB_NONE);
@@ -171,6 +181,9 @@ void Utility::setShapePath(quint32 WId, const QPainterPath &path, bool onlyInput
 
 void Utility::sendMoveResizeMessage(quint32 WId, uint32_t action, QPoint globalPos, Qt::MouseButton qbutton)
 {
+    if (!QX11Info::isPlatformX11() || !QX11Info::connection())
+        return;
+
     int xbtn = qbutton == Qt::LeftButton ? XCB_BUTTON_INDEX_1 :
                qbutton == Qt::RightButton ? XCB_BUTTON_INDEX_3 :
                XCB_BUTTON_INDEX_ANY;
@@ -263,7 +276,39 @@ static xcb_cursor_t CornerEdge2Xcb_cursor_t(Utility::CornerEdge ce)
 
 bool Utility::setWindowCursor(quint32 WId, Utility::CornerEdge ce)
 {
+    if (!QX11Info::isPlatformX11()) {
+        Q_UNUSED(WId);
+        auto cursorShape = Qt::ArrowCursor;
+        switch (ce) {
+        case TopLeftCorner:
+        case BottomRightCorner:
+            cursorShape = Qt::SizeFDiagCursor;
+            break;
+        case TopRightCorner:
+        case BottomLeftCorner:
+            cursorShape = Qt::SizeBDiagCursor;
+            break;
+        case TopEdge:
+        case BottomEdge:
+            cursorShape = Qt::SizeVerCursor;
+            break;
+        case LeftEdge:
+        case RightEdge:
+            cursorShape = Qt::SizeHorCursor;
+            break;
+        case NoneEdge:
+            break;
+        }
+        if (QWindow *window = qApp->focusWindow()) {
+            window->setCursor(QCursor(cursorShape));
+            return true;
+        }
+        return false;
+    }
+
     const auto display = QX11Info::display();
+    if (!display)
+        return false;
 
     Cursor cursor = XCreateFontCursor(display, CornerEdge2Xcb_cursor_t(ce));
 
@@ -294,6 +339,9 @@ QByteArray Utility::windowProperty(quint32 WId, xcb_atom_t propAtom, xcb_atom_t 
 {
     QByteArray data;
     xcb_connection_t* conn = QX11Info::connection();
+    if (!QX11Info::isPlatformX11() || !conn)
+        return data;
+
     xcb_get_property_cookie_t cookie = xcb_get_property(conn, false, WId, propAtom, typeAtom, 0, len);
     xcb_generic_error_t* err = nullptr;
     xcb_get_property_reply_t* reply = xcb_get_property_reply(conn, cookie, &err);
@@ -316,6 +364,10 @@ QByteArray Utility::windowProperty(quint32 WId, xcb_atom_t propAtom, xcb_atom_t 
 QList<xcb_atom_t> Utility::windowNetWMState(quint32 WId)
 {
     QList<xcb_atom_t> res;
+
+    if (!QX11Info::isPlatformX11() || !QX11Info::display()
+            || !QX11Info::connection())
+        return res;
 
     const auto wmStateAtom = XInternAtom(QX11Info::display(), kAtomNameWmState, false);
     xcb_connection_t* conn = QX11Info::connection();
@@ -344,6 +396,9 @@ QList<xcb_atom_t> Utility::windowNetWMState(quint32 WId)
 void Utility::setWindowProperty(quint32 WId, xcb_atom_t propAtom, xcb_atom_t typeAtom, const void *data, quint32 len, uint8_t format)
 {
     xcb_connection_t* conn = QX11Info::connection();
+    if (!QX11Info::isPlatformX11() || !conn)
+        return;
+
     xcb_change_property(conn, XCB_PROP_MODE_REPLACE, WId, propAtom, typeAtom, format, len, data);
     xcb_flush(conn);
 }
@@ -352,7 +407,15 @@ void Utility::setStayOnTop(const QWidget *widget, bool on)
 {
     Q_ASSERT(widget);
 
+    if (!QX11Info::isPlatformX11()) {
+        if (widget->windowHandle())
+            widget->windowHandle()->setFlag(Qt::WindowStaysOnTopHint, on);
+        return;
+    }
+
     const auto display = QX11Info::display();
+    if (!display)
+        return;
     const auto screen = QX11Info::appScreen();
 
     const auto wmStateAtom = XInternAtom(display, kAtomNameWmState, false);
@@ -382,4 +445,3 @@ void Utility::setStayOnTop(const QWidget *widget, bool on)
                &xev);
     XFlush(display);
 }
-

@@ -204,6 +204,7 @@ class MainWindowPropertyMonitor: public QAbstractNativeEventFilter {
 public:
     MainWindowPropertyMonitor(MainWindow *src)
         :QAbstractNativeEventFilter(), _mw(src), _source(src->windowHandle()) {
+        Q_ASSERT(QX11Info::isPlatformX11());
         qApp->installNativeEventFilter(this);
 
         _atomWMState = Utility::internAtom("_NET_WM_STATE");
@@ -273,6 +274,29 @@ class MainWindowEventListener : public QObject
 
                 mw->capturedMousePressEvent(e);
                 if (startResizing) {
+                    if (!QX11Info::isPlatformX11()) {
+                        Qt::Edges edges;
+                        switch (lastCornerEdge) {
+                        case Utility::TopLeftCorner:
+                            edges = Qt::TopEdge | Qt::LeftEdge;
+                            break;
+                        case Utility::TopRightCorner:
+                            edges = Qt::TopEdge | Qt::RightEdge;
+                            break;
+                        case Utility::BottomLeftCorner:
+                            edges = Qt::BottomEdge | Qt::LeftEdge;
+                            break;
+                        case Utility::BottomRightCorner:
+                            edges = Qt::BottomEdge | Qt::RightEdge;
+                            break;
+                        default:
+                            break;
+                        }
+                        if (edges) {
+                            window->startSystemResize(edges);
+                        }
+                        startResizing = false;
+                    }
                     return true;
                 }
                 break;
@@ -281,7 +305,10 @@ class MainWindowEventListener : public QObject
                 if (!enabled) return false;
                 QMouseEvent *e = static_cast<QMouseEvent*>(event);
                 setLeftButtonPressed(false);
-                qApp->setOverrideCursor(window->cursor());
+                if (QX11Info::isPlatformX11())
+                    qApp->setOverrideCursor(window->cursor());
+                else
+                    window->unsetCursor();
 
                 auto mw = static_cast<MainWindow*>(parent());
                 mw->capturedMouseReleaseEvent(e);
@@ -367,7 +394,10 @@ skip_set_cursor:
                         lastCornerEdge = mouseCorner = Utility::NoneEdge;
                         return false;
                     } else {
-                        qApp->setOverrideCursor(window->cursor());
+                        if (QX11Info::isPlatformX11())
+                            qApp->setOverrideCursor(window->cursor());
+                        else
+                            window->unsetCursor();
                     }
                 } else {
                     if (startResizing) {
@@ -498,7 +528,7 @@ skip_set_cursor:
         bool leftButtonPressed {false};
         bool startResizing {false};
         bool enabled {true};
-        Utility::CornerEdge lastCornerEdge;
+        Utility::CornerEdge lastCornerEdge {Utility::NoneEdge};
         QWindow* _window;
 };
 
@@ -512,12 +542,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QFrame(NULL)
 {
     bool composited = CompositingManager::get().composited();
-#ifdef USE_DXCB
+    // DTitlebar decides which window-control buttons to create from the
+    // top-level window flags.  These hints are required on Wayland too; they
+    // were previously only set in DXcb builds, leaving just the menu button.
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint |
             Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
-#else
-    setWindowFlags(Qt::FramelessWindowHint);
-#endif
     setAcceptDrops(true);
 
     if (composited) {
@@ -743,7 +772,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->windowHandle()->installEventFilter(_listener);
 
     //auto mwfm = new MainWindowFocusMonitor(this);
-    auto mwpm = new MainWindowPropertyMonitor(this);
+    if (QX11Info::isPlatformX11())
+        new MainWindowPropertyMonitor(this);
 
     connect(this, &MainWindow::windowEntered, &MainWindow::resumeToolsWindow);
     connect(this, &MainWindow::windowLeaved, &MainWindow::suspendToolsWindow);
@@ -753,7 +783,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->windowHandle()->installEventFilter(_listener);
 
     //auto mwfm = new MainWindowFocusMonitor(this);
-    auto mwpm = new MainWindowPropertyMonitor(this);
+    if (QX11Info::isPlatformX11())
+        new MainWindowPropertyMonitor(this);
 
     connect(this, &MainWindow::windowEntered, &MainWindow::resumeToolsWindow);
     connect(this, &MainWindow::windowLeaved, &MainWindow::suspendToolsWindow);
@@ -814,21 +845,26 @@ void MainWindow::setupTitlebar()
 void MainWindow::updateContentGeometry(const QRect& rect)
 {
 #ifdef USE_DXCB
-    auto frame = QWindow::fromWinId(windowHandle()->winId());
+    if (QX11Info::isPlatformX11() && QX11Info::connection()) {
+        auto frame = QWindow::fromWinId(windowHandle()->winId());
 
-    QRect frame_rect = rect;
-    if (_handle) {
-        frame_rect += _handle->frameMargins();
+        QRect frame_rect = rect;
+        if (_handle) {
+            frame_rect += _handle->frameMargins();
+        }
+
+        const uint32_t values[] = { (uint32_t)frame_rect.x(), (uint32_t)frame_rect.y(),
+            (uint32_t)frame_rect.width(), (uint32_t)frame_rect.height() };
+        // Manually configure the X11 frame window, which will in turn update
+        // the content window.
+        xcb_configure_window(QX11Info::connection(),
+                windowHandle()->winId(),
+                XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT |
+                XCB_CONFIG_WINDOW_Y | XCB_CONFIG_WINDOW_X,
+                values);
+    } else {
+        setGeometry(rect);
     }
-
-    const uint32_t values[] = { (uint32_t)frame_rect.x(), (uint32_t)frame_rect.y(),
-        (uint32_t)frame_rect.width(), (uint32_t)frame_rect.height() };
-    // manually configure frame window which will in turn update content window
-    xcb_configure_window(QX11Info::connection(),
-            windowHandle()->winId(),
-            XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT |
-            XCB_CONFIG_WINDOW_Y | XCB_CONFIG_WINDOW_X,
-            values);
 
 #else
     setGeometry(rect);
@@ -2557,7 +2593,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *ev)
     _mouseMoved = true;
 
     if (windowState() == Qt::WindowNoState || isMaximized()) {
-        Utility::startWindowSystemMove(this->winId());
+        if (QX11Info::isPlatformX11())
+            Utility::startWindowSystemMove(this->winId());
+        else if (windowHandle())
+            windowHandle()->startSystemMove();
     }
     QWidget::mouseMoveEvent(ev);
 }

@@ -34,6 +34,7 @@
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtGui/private/qtx11extras_p.h>
+#include <QtGui/qguiapplication_platform.h>
 #else
 #include <QtX11Extras/QX11Info>
 #endif
@@ -55,7 +56,18 @@ void main() {
 }
 )";
 
+/*
+ * Obveriously this MPV GLWidget is build against X11 and is NOT Wayland ready.
+ * I know that but I do not have the ability to fix it so I asked AI to help me fix
+ * this class up.
+ * ---- CharOfString
+ */
+
 static const char* fs_blend = R"(
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying vec2 texCoord;
 
 uniform sampler2D movie;
@@ -81,6 +93,10 @@ void main() {
 )";
 
 static const char* fs_blend_corner = R"(
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying vec2 maskCoord;
 varying vec2 texCoord;
 
@@ -107,6 +123,10 @@ void main() {
 )";
 
 static const char* fs_code = R"(
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying vec2 texCoord;
 
 uniform sampler2D sampler;
@@ -119,6 +139,10 @@ void main() {
 )";
 
 static const char* fs_corner_code = R"(
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying vec2 texCoord;
 
 uniform sampler2D corner;
@@ -131,23 +155,12 @@ void main() {
 )";
 
 namespace dmr {
-    static void* GLAPIENTRY glMPGetNativeDisplay(const char* name) {
-        qWarning() << __func__ << name;
-        if (!strcmp(name, "x11") || !strcmp(name, "X11")) {
-            return (void*)QX11Info::display();
-        }
-        return NULL;
-    }
-
     static void *get_proc_address(void *ctx, const char *name) {
         Q_UNUSED(ctx);
         QOpenGLContext *glctx = QOpenGLContext::currentContext();
         if (!glctx)
             return NULL;
 
-        if (!strcmp(name, "glMPGetNativeDisplay")) {
-            return (void*)glMPGetNativeDisplay;
-        }
         return (void *)glctx->getProcAddress(QByteArray(name));
     }
 
@@ -172,21 +185,13 @@ namespace dmr {
 
     void MpvGLWidget::onFrameSwapped()
     {
-        //qDebug() << "frame swapped";
-        //mpv_opengl_cb_report_flip(_gl_ctx, 0);
+        if (_renderCtx)
+            mpv_render_context_report_swap(_renderCtx);
     }
 
     MpvGLWidget::MpvGLWidget(QWidget *parent, mpv::qt::Handle h)
         :QOpenGLWidget(parent), _handle(h) { 
         setUpdateBehavior(QOpenGLWidget::NoPartialUpdate);
-
-        //_gl_ctx = (mpv_opengl_cb_context*) mpv_get_sub_api(h, MPV_SUB_API_OPENGL_CB);
-        if (!_gl_ctx) {
-            std::runtime_error("can not init mpv gl");
-        }
-        //mpv_opengl_cb_set_update_callback(_gl_ctx, gl_update_callback, this);
-        /*connect(this, &QOpenGLWidget::frameSwapped,
-                this, &MpvGLWidget::onFrameSwapped, Qt::DirectConnection);*/
 
         //auto fmt = QSurfaceFormat::defaultFormat();
         //fmt.setAlphaBufferSize(8);
@@ -196,6 +201,13 @@ namespace dmr {
     MpvGLWidget::~MpvGLWidget() 
     {
         makeCurrent();
+
+        if (_renderCtx) {
+            mpv_render_context_set_update_callback(_renderCtx, nullptr, nullptr);
+            mpv_render_context_free(_renderCtx);
+            _renderCtx = nullptr;
+        }
+
         if (_darkTex) {
             _darkTex->destroy();
             delete _darkTex;
@@ -221,12 +233,6 @@ namespace dmr {
 
         if (_fbo) delete _fbo;
 
-        //if (_gl_ctx)
-        //    mpv_opengl_cb_set_update_callback(_gl_ctx, NULL, NULL);
-        // Until this call is done, we need to make sure the player remains
-        // alive. This is done implicitly with the mpv::qt::Handle instance
-        // in this class.
-        //mpv_opengl_cb_uninit_gl(_gl_ctx);
         doneCurrent();
     }
 
@@ -331,6 +337,39 @@ namespace dmr {
 
 
         prepareSplashImages();
+
+        mpv_opengl_init_params glInitParams {get_proc_address, nullptr};
+        mpv_render_param params[4];
+        int paramIndex = 0;
+        params[paramIndex++] = {
+            MPV_RENDER_PARAM_API_TYPE,
+            const_cast<char *>(MPV_RENDER_API_TYPE_OPENGL)
+        };
+        params[paramIndex++] = {
+            MPV_RENDER_PARAM_OPENGL_INIT_PARAMS,
+            &glInitParams
+        };
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        if (auto *wayland = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>()) {
+            params[paramIndex++] = {MPV_RENDER_PARAM_WL_DISPLAY, wayland->display()};
+        } else
+#endif
+        if (QX11Info::isPlatformX11() && QX11Info::display()) {
+            params[paramIndex++] = {MPV_RENDER_PARAM_X11_DISPLAY, QX11Info::display()};
+        }
+        params[paramIndex] = {MPV_RENDER_PARAM_INVALID, nullptr};
+
+        const int error = mpv_render_context_create(&_renderCtx, _handle, params);
+        if (error < 0) {
+            qCritical() << "Failed to create libmpv render context:"
+                        << mpv_error_string(error);
+        } else {
+            mpv_render_context_set_update_callback(_renderCtx, gl_update_callback, this);
+            connect(this, &QOpenGLWidget::frameSwapped,
+                    this, &MpvGLWidget::onFrameSwapped, Qt::DirectConnection);
+        }
+
         setupIdlePipe();
         setupBlendPipe();
 
@@ -346,15 +385,13 @@ namespace dmr {
 #endif
 #endif
 
-        //if (mpv_opengl_cb_init_gl(_gl_ctx, "GL_MP_MPGetNativeDisplay", get_proc_address, NULL) < 0)
-        //    throw std::runtime_error("could not initialize OpenGL");
     }
 
     void MpvGLWidget::updateMovieFbo()
     {
         if (!_doRoundedClipping) return;
 
-        auto desiredSize = size() * qApp->devicePixelRatio();
+        auto desiredSize = size() * devicePixelRatioF();
 
         if (_fbo) {
             if (_fbo->size() == desiredSize) {
@@ -569,20 +606,44 @@ namespace dmr {
     void MpvGLWidget::paintGL() 
     {
         QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
-        if (_playing) {
+        if (_playing && _renderCtx) {
 
-            auto dpr = qApp->devicePixelRatio();
+            auto dpr = devicePixelRatioF();
             QSize scaled = size() * dpr;
 
+            auto renderFrame = [this, &scaled](int framebuffer) {
+                QOpenGLFunctions *functions = QOpenGLContext::currentContext()->functions();
+                while (functions->glGetError() != GL_NO_ERROR) {
+                    // libmpv checks the current GL error after allocating its
+                    // textures.  Do not make it report stale Qt/widget errors
+                    // as renderer failures.
+                }
+                mpv_opengl_fbo target {
+                    framebuffer,
+                    scaled.width(),
+                    scaled.height(),
+                    0
+                };
+                int flipY = 1;
+                mpv_render_param renderParams[] = {
+                    {MPV_RENDER_PARAM_OPENGL_FBO, &target},
+                    {MPV_RENDER_PARAM_FLIP_Y, &flipY},
+                    {MPV_RENDER_PARAM_INVALID, nullptr}
+                };
+                mpv_render_context_render(_renderCtx, renderParams);
+            };
+
             if (!_doRoundedClipping) {
-                //mpv_opengl_cb_draw(_gl_ctx, defaultFramebufferObject(), scaled.width(), -scaled.height());
+                renderFrame(defaultFramebufferObject());
             } else {
+                _fbo->bind();
+                f->glDisable(GL_BLEND);
+                renderFrame(_fbo->handle());
+                _fbo->release();
+                f->glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebufferObject());
+
                 f->glEnable(GL_BLEND);
                 f->glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-                _fbo->bind();
-                //mpv_opengl_cb_draw(_gl_ctx, _fbo->handle(), scaled.width(), -scaled.height());
-                _fbo->release();
 
                 {
                     QOpenGLVertexArrayObject::Binder vaoBind(&_vaoBlend);
@@ -717,4 +778,3 @@ namespace dmr {
         }
     }
 }
-

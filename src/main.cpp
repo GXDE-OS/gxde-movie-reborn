@@ -52,26 +52,56 @@
 DWIDGET_USE_NAMESPACE
 
 
-int main(int argc, char *argv[])
-{
-    CompositingManager::detectOpenGLEarly();
+int main(int argc, char *argv[]) {
+    QString commandLinePlatform;
+    for (int i = 1; i < argc; ++i) {
+        const QString argument = QString::fromLocal8Bit(argv[i]);
+        if (argument == QLatin1String("-platform") && i + 1 < argc) {
+            commandLinePlatform = QString::fromLocal8Bit(argv[i + 1]);
+            break;
+        }
+
+        if (argument.startsWith(QLatin1String("-platform="))) {
+            commandLinePlatform = argument.section(QLatin1Char('='), 1);
+            break;
+        }
+    }
+
+    QString requestedPlatform = commandLinePlatform.isEmpty()
+        ? qEnvironmentVariable("QT_QPA_PLATFORM").section(QLatin1Char(';'), 0, 0)
+            : commandLinePlatform;
+
+    const bool waylandSession = qEnvironmentVariable("XDG_SESSION_TYPE") == QLatin1String("wayland")
+        || !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
+
+    // Detect session type to use NATIVE backend!!
+    if (commandLinePlatform.isEmpty() && waylandSession
+            && (requestedPlatform.isEmpty()
+            || requestedPlatform == QLatin1String("dxcb"))) {
+        qputenv("QT_QPA_PLATFORM", "wayland;xcb");
+        requestedPlatform = QStringLiteral("wayland");
+    }
+
+    const bool useWayland = requestedPlatform.startsWith(QLatin1String("wayland"))
+        || (requestedPlatform.isEmpty() && waylandSession);
+
+    // The OpenGL interop probe creates an mpv window and uses GLX/XCB.
+    // On X11: Must run before QApplication
+    // On Wayland: Not required, and not supported, so skip it.
+    if (!useWayland) {
+        CompositingManager::detectOpenGLEarly();
+    }
 
 #if defined(STATIC_LIB)
     DWIDGET_INIT_RESOURCE();
 #endif
-    // 新增检测方法，修复在 x11 下特效丢失的问题
-    bool waylandSession = (qgetenv("XDG_SESSION_TYPE") == "wayland") || 
-                      qEnvironmentVariableIsSet("WAYLAND_DISPLAY");
 
-    if (waylandSession) {
-        // 使用 XWayland 运行
-        qputenv("XDG_SESSION_TYPE", "x11");
-        qputenv("WAYLAND_DISPLAY", "");
-    }else{
+    if (!useWayland) {
         DApplication::loadDXcbPlugin();
     }
 
     DApplication app(argc, argv);
+    qInfo() << "Qt platform:" << QGuiApplication::platformName();
 
     // required by mpv
     setlocale(LC_NUMERIC, "C");
@@ -152,4 +182,3 @@ int main(int argc, char *argv[])
     }
     return app.exec();
 }
-

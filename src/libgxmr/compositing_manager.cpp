@@ -115,13 +115,16 @@ CompositingManager::CompositingManager() {
 
     _composited = false;
 
-    if (QProcessEnvironment::systemEnvironment().value("SANDBOX") == "flatpak") {
+    // A Wayland session always has a compositor.
+    if (!QX11Info::isPlatformX11()) {
+        _composited = true;
+    } else if (QProcessEnvironment::systemEnvironment().value("SANDBOX") == "flatpak") {
         _composited = QFile::exists("/dev/dri/card0");
     } else if (isProprietaryDriver()) {
         _composited = true;
     } else {
         GetScreenDriver = (glXGetScreenDriver_t *)glXGetProcAddressARB ((const GLubyte *)"glXGetScreenDriver");
-        if (GetScreenDriver) {
+        if (GetScreenDriver && QX11Info::display()) {
             const char *name = (*GetScreenDriver) (QX11Info::display(), QX11Info::appScreen());
             qDebug() << "dri driver: " << name;
             _composited = name != nullptr;
@@ -174,6 +177,17 @@ void CompositingManager::detectOpenGLEarly()
     static bool detect_run = false;
 
     if (detect_run) return;
+
+    const QString requestedPlatform = qEnvironmentVariable("QT_QPA_PLATFORM")
+        .section(QLatin1Char(';'), 0, 0);
+    const bool waylandRequested = requestedPlatform.startsWith(QLatin1String("wayland"))
+        || (requestedPlatform.isEmpty()
+            && (qEnvironmentVariable("XDG_SESSION_TYPE") == QLatin1String("wayland")
+                || !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY")));
+    if (waylandRequested) {
+        detect_run = true;
+        return;
+    }
 
     auto probed = probeHwdecInterop();
     qDebug() << "probeHwdecInterop" << probed 
@@ -380,16 +394,15 @@ PlayerOptionList CompositingManager::getProfile(const QString& name)
 
 PlayerOptionList CompositingManager::getBestProfile()
 {
-    QString profile_name = "default";
+    QString profile_name = _composited ? "composited" : "default";
     switch (_platform) {
         case Platform::Alpha:
         case Platform::Mips:
         case Platform::Arm64:
-            profile_name = _composited ? "composited" : "failsafe";
+            if (!_composited)
+                profile_name = "failsafe";
             break;
         case Platform::X86:
-            profile_name = _composited ? "composited" : "default";
-            break;
         case Platform::Unknown:
             break;
     }
@@ -399,4 +412,3 @@ PlayerOptionList CompositingManager::getBestProfile()
 
 #undef C2Q
 }
-
