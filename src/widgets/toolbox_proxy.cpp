@@ -698,6 +698,9 @@ void ToolboxProxy::setup()
 
     QWidget *popupParent = useEmbeddedPopups() ? _mainWindow : nullptr;
     _volSlider = new VolumeSlider(_engine, _mainWindow, popupParent);
+    // Hide on default to avoid volume bar showing up when initializing.
+    // Don't worry, they will show up when user hover the volume button.
+    _volSlider->hide();
     connect(_volBtn, &VolumeButton::entered, [=]() {
         _volSlider->stopTimer();
         QPoint pos = _volBtn->parentWidget()->mapToGlobal(_volBtn->pos());
