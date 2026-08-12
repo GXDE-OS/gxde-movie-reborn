@@ -2126,7 +2126,8 @@ void MainWindow::play(const QUrl& url)
 
 void MainWindow::toggleShapeMask()
 {
-    if (CompositingManager::get().composited()) {
+    const bool nativeWayland = !QX11Info::isPlatformX11();
+    if (CompositingManager::get().composited() && !nativeWayland) {
         return;
     }
 
@@ -2134,18 +2135,16 @@ void MainWindow::toggleShapeMask()
     if (isFullScreen() || isMaximized()) {
         clearMask();
     } else {
-        QPixmap shape(size());
-        shape.setDevicePixelRatio(windowHandle()->devicePixelRatio());
-        shape.fill(Qt::transparent);
+        QBitmap shape(size());
+        shape.fill(Qt::color0);
 
         QPainter p(&shape);
-        p.setRenderHint(QPainter::Antialiasing);
         QPainterPath pp;
         pp.addRoundedRect(rect(), RADIUS, RADIUS);
-        p.fillPath(pp, QBrush(Qt::white));
+        p.fillPath(pp, QBrush(Qt::color1));
         p.end();
 
-        setMask(shape.mask());
+        setMask(shape);
     }
 #endif
 }
@@ -2658,7 +2657,9 @@ void MainWindow::paintEvent(QPaintEvent* pe)
 #else
     bool rounded = !isFullScreen() && !isMaximized();
 
+    p.setCompositionMode(QPainter::CompositionMode_Source);
     p.fillRect(rect(), Qt::transparent);
+    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
 
     if (rounded) {
         QPainterPath pp;
