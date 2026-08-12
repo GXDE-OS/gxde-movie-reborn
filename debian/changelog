@@ -1,3 +1,9 @@
+gxde-movie-reborn (4.0.6) UNRELEASED; urgency=medium
+
+  * 修复音量条在窗口初始化时就出现
+
+ -- CharOfString <root@charofstring.cc>  Thu, 13 Aug 2026 02:11:58 +0800
+
 gxde-movie-reborn (4.0.5) UNRELEASED; urgency=medium
 
   * 新增原生Wayland支持，不再依赖XWayland运行
