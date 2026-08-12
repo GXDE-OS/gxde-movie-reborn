@@ -54,6 +54,17 @@ static const int RIGHT_MARGIN = 10;
 DWIDGET_USE_NAMESPACE
 
 namespace dmr {
+static bool useEmbeddedPopups()
+{
+    return QGuiApplication::platformName().startsWith(QLatin1String("wayland"));
+}
+
+static DArrowRectangle::FloatMode popupFloatMode()
+{
+    return useEmbeddedPopups() ? DArrowRectangle::FloatWidget
+        : DArrowRectangle::FloatWindow;
+}
+
 class KeyPressBubbler: public QObject {
 public:
     KeyPressBubbler(QObject *parent): QObject(parent) {}
@@ -190,8 +201,10 @@ class SubtitlesView: public DArrowRectangle {
     Q_OBJECT
 public:
     SubtitlesView(QWidget *p, PlayerEngine* e)
-        : DArrowRectangle(DArrowRectangle::ArrowBottom, p), _engine{e} {
-        setWindowFlags(Qt::Popup);
+        : DArrowRectangle(DArrowRectangle::ArrowBottom, popupFloatMode(), p), _engine{e} {
+        if (!useEmbeddedPopups()) {
+            setWindowFlags(Qt::Popup);
+        }
 
         DThemeManager::instance()->registerWidget(this);
 
@@ -229,6 +242,14 @@ public:
         connect(DThemeManager::instance(), &DThemeManager::themeChanged, 
                 this, &SubtitlesView::onThemeChanged);
         onThemeChanged();
+    }
+
+    void showAtGlobal(const QPoint &globalPos)
+    {
+        const QPoint pos = isWindow() || !parentWidget()
+            ? globalPos : parentWidget()->mapFromGlobal(globalPos);
+        DArrowRectangle::show(pos.x(), pos.y());
+        raise();
     }
 
 protected:
@@ -315,11 +336,14 @@ private:
 class ThumbnailPreview: public DArrowRectangle {
     Q_OBJECT
 public:
-    ThumbnailPreview(): DArrowRectangle(DArrowRectangle::ArrowBottom) {
+    explicit ThumbnailPreview(QWidget *parent = nullptr)
+        : DArrowRectangle(DArrowRectangle::ArrowBottom, popupFloatMode(), parent) {
         setAttribute(Qt::WA_DeleteOnClose);
         // FIXME(hualet): Qt::Tooltip will cause Dock to show up even
         // the player is in fullscreen mode.
-        setWindowFlags(Qt::Tool);
+        if (!useEmbeddedPopups()) {
+            setWindowFlags(Qt::Tool);
+        }
         
         setObjectName("ThumbnailPreview");
 
@@ -348,7 +372,9 @@ public:
                 this, &ThumbnailPreview::updateTheme);
         updateTheme();
 
-        winId(); // force backed window to be created
+        if (!useEmbeddedPopups()) {
+            winId(); // force the X11-backed window to be created
+        }
     }
 
     void updateWithPreview(const QPixmap& pm, qint64 secs, int rotation) {
@@ -361,14 +387,20 @@ public:
         _time->move((width() - _time->width())/2, 69);
 
         if (isVisible()) {
-            move(QCursor::pos().x(), frameGeometry().y() + height());
+            QPoint cursor = QCursor::pos();
+            if (!isWindow() && parentWidget()) {
+                cursor = parentWidget()->mapFromGlobal(cursor);
+            }
+            move(cursor.x(), geometry().y() + height());
         }
     }
 
-    void updateWithPreview(const QPoint& pos) {
+    void updateWithPreview(const QPoint& globalPos) {
         resizeWithContent();
-        move(pos.x(), pos.y());
+        const QPoint pos = isWindow() || !parentWidget()
+                ? globalPos : parentWidget()->mapFromGlobal(globalPos);
         show(pos.x(), pos.y());
+        raise();
     }
 
 signals:
@@ -417,10 +449,13 @@ private:
 class VolumeSlider: public DArrowRectangle {
     Q_OBJECT
 public:
-    VolumeSlider(PlayerEngine* eng, MainWindow* mw)
-        :DArrowRectangle(DArrowRectangle::ArrowBottom), _engine(eng), _mw(mw) {
+    VolumeSlider(PlayerEngine* eng, MainWindow* mw, QWidget *parent = nullptr)
+        :DArrowRectangle(DArrowRectangle::ArrowBottom, popupFloatMode(), parent),
+         _engine(eng), _mw(mw) {
         setFixedSize(QSize(24, 105));
-        setWindowFlags(Qt::Tool);
+        if (!useEmbeddedPopups()) {
+            setWindowFlags(Qt::Tool);
+        }
 
         setShadowBlurRadius(4);
         setRadius(4);
@@ -457,6 +492,14 @@ public:
         connect(_engine, &PlayerEngine::volumeChanged, [=]() {
             _slider->setValue(_engine->volume());
         });
+    }
+
+    void showAtGlobal(const QPoint &globalPos)
+    {
+        const QPoint pos = isWindow() || !parentWidget()
+            ? globalPos : parentWidget()->mapFromGlobal(globalPos);
+        DArrowRectangle::show(pos.x(), pos.y());
+        raise();
     }
 
 
@@ -537,10 +580,11 @@ ToolboxProxy::ToolboxProxy(QWidget *mainWindow, PlayerEngine *proxy)
 
     DThemeManager::instance()->registerWidget(this);
 
-    _previewer = new ThumbnailPreview;
+    QWidget *popupParent = useEmbeddedPopups() ? _mainWindow : nullptr;
+    _previewer = new ThumbnailPreview(popupParent);
     _previewer->hide();
 
-    _subView = new SubtitlesView(0, _engine);
+    _subView = new SubtitlesView(popupParent, _engine);
     _subView->hide();
     setup();
 }
@@ -652,12 +696,15 @@ void ToolboxProxy::setup()
     signalMapper->setMapping(_volBtn, "vol");
     _right->addWidget(_volBtn);
 
-    _volSlider = new VolumeSlider(_engine, _mainWindow);
+    QWidget *popupParent = useEmbeddedPopups() ? _mainWindow : nullptr;
+    _volSlider = new VolumeSlider(_engine, _mainWindow, popupParent);
     connect(_volBtn, &VolumeButton::entered, [=]() {
         _volSlider->stopTimer();
         QPoint pos = _volBtn->parentWidget()->mapToGlobal(_volBtn->pos());
         pos.ry() = parentWidget()->mapToGlobal(this->pos()).y();
-        _volSlider->show(pos.x() + _volSlider->width(), pos.y() - 5 + TOOLBOX_TOP_EXTENT);
+        _volSlider->showAtGlobal(
+            QPoint(pos.x() + _volSlider->width(),
+                pos.y() - 5 + TOOLBOX_TOP_EXTENT));
     });
     connect(_volBtn, &VolumeButton::leaved, _volSlider, &VolumeSlider::delayedHide);
     connect(_volBtn, &VolumeButton::requestVolumeUp, [=]() {
@@ -947,11 +994,11 @@ void ToolboxProxy::buttonClicked(QString id)
     } else if (id == "list") {
         _mainWindow->requestAction(ActionFactory::ActionKind::TogglePlaylist);
     } else if (id == "sub") {
-        _subView->setVisible(true);
-        
         QPoint pos = _subBtn->parentWidget()->mapToGlobal(_subBtn->pos());
         pos.ry() = parentWidget()->mapToGlobal(this->pos()).y();
-        _subView->show(pos.x() + _subBtn->width()/2, pos.y() - 5 + TOOLBOX_TOP_EXTENT);
+        _subView->showAtGlobal(
+            QPoint(pos.x() + _subBtn->width()/2,
+                pos.y() - 5 + TOOLBOX_TOP_EXTENT));
     }
 }
 

@@ -100,9 +100,21 @@ protected:
                 tip->adjustSize();
                 tip->raise();
                 auto pos = he->globalPos() + QPoint{0, 10};
-                auto dw = QGuiApplication::primaryScreen()->availableGeometry().width();
-                if (pos.x() + tip->width() > dw) {
-                    pos.rx() = dw - tip->width();
+                if (!tip->isWindow() && tip->parentWidget()) {
+                    pos = tip->parentWidget()->mapFromGlobal(pos);
+                    if (pos.x() + tip->width() > tip->parentWidget()->width())
+                        pos.rx() = tip->parentWidget()->width() - tip->width();
+                    pos.rx() = qMax(0, pos.x());
+                } else {
+                    QScreen *screen = QGuiApplication::screenAt(pos);
+                    if (!screen) {
+                        screen = QGuiApplication::primaryScreen();
+                    }
+
+                    const auto screenRect = screen->availableGeometry();
+                    if (pos.x() + tip->width() > screenRect.right()) {
+                        pos.rx() = screenRect.right() - tip->width();
+                    }
                 }
                 tip->move(pos);
                 return true;
@@ -205,8 +217,13 @@ public:
 
         setToolTip(_pif.mi.title);
         auto th = new PlayItemTooltipHandler(this);
-        auto t = new Tip(QPixmap(), _pif.mi.title, NULL);
-        t->setWindowFlags(Qt::ToolTip|Qt::CustomizeWindowHint);
+        const bool embeddedTooltip = QGuiApplication::platformName()
+            .startsWith(QLatin1String("wayland"));
+        QWidget *tipParent = embeddedTooltip ? _listWidget->window() : nullptr;
+        auto t = new Tip(QPixmap(), _pif.mi.title, tipParent);
+        if (!embeddedTooltip)
+            t->setWindowFlags(Qt::ToolTip|Qt::CustomizeWindowHint);
+        connect(this, &QObject::destroyed, t, &QObject::deleteLater);
         t->setAttribute(Qt::WA_TranslucentBackground);
         t->setMaximumWidth(200);
         t->setProperty("for", QVariant::fromValue<QWidget*>(this));

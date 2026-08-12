@@ -76,7 +76,7 @@ void NotificationWidget::resizeEvent(QResizeEvent *re)
 
 void NotificationWidget::syncPosition()
 {
-    auto geom = _mw->geometry();
+    const auto geom = _mw->rect();
     switch (_anchor) {
         case AnchorBottom:
             move(geom.center().x() - size().width()/2, geom.bottom() - _anchorDist - height());
