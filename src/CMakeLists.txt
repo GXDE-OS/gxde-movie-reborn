@@ -13,6 +13,10 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 find_package(Qt6 REQUIRED COMPONENTS
     Widgets Concurrent Network Sql DBus Gui OpenGL OpenGLWidgets LinguistTools)
 
+if(NOT TARGET Qt6::GuiPrivate)
+    find_package(Qt6GuiPrivate REQUIRED)
+endif()
+
 pkg_check_modules(DTK2W REQUIRED IMPORTED_TARGET dtk2widget dtk6core)
 
 pkg_check_modules(Mpv REQUIRED IMPORTED_TARGET mpv)
