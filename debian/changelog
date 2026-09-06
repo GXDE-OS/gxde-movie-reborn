@@ -1,8 +1,9 @@
-gxde-movie-reborn (4.0.6) UNRELEASED; urgency=medium
+gxde-movie-reborn (4.0.7) UNRELEASED; urgency=medium
 
   * 修复音量条在窗口初始化时就出现
+  * Build against both Qt 6.8 and Qt 6.10.
 
- -- CharOfString <root@charofstring.cc>  Thu, 13 Aug 2026 02:11:58 +0800
+ -- CharOfString <root@charofstring.cc>  Sun, 06 Sep 2026 17:18:42 -0500
 
 gxde-movie-reborn (4.0.5) UNRELEASED; urgency=medium
 
