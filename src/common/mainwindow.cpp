@@ -2661,25 +2661,17 @@ void MainWindow::paintEvent(QPaintEvent* pe)
     p.fillRect(rect(), Qt::transparent);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
 
+    QPainterPath pp;
     if (rounded) {
-        QPainterPath pp;
         pp.addRoundedRect(rect(), RADIUS, RADIUS);
-        p.fillPath(pp, QColor(0, 0, 0, light ? 255 * 0.1: 255));
-
-        {
-            /* we supposed to draw by qss background-color here, but it's conflict with
-             * border area (border has alpha, which blends with background-color.
-             */
-            auto view_rect = rect().marginsRemoved(QMargins(1, 1, 1, 1));
-            QPainterPath pp;
-            pp.addRoundedRect(view_rect, RADIUS, RADIUS);
-            p.fillPath(pp, bg_clr);
-        }
     } else {
-        QPainterPath pp;
         pp.addRect(rect());
-        p.fillPath(pp, bg_clr);
     }
+    // NOTE: fill the whole (rounded) rect with the background color directly;
+    // do not paint an extra 1px dark outer frame here, otherwise a black
+    // border shows up around the window in light theme (it is invisible in
+    // dark theme only because it blends with the dark background).
+    p.fillPath(pp, bg_clr);
 
 #endif
 
