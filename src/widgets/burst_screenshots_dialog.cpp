@@ -71,11 +71,11 @@ BurstScreenshotsDialog::BurstScreenshotsDialog(const PlayItemInfo& pif)
     hl->addLayout(trl, 1);
 
     QFont ft;
-    ft.setPixelSize(14);
+    ft.setPixelSize(12);
     QFontMetrics fm(ft);
 
     auto *nm = new QLabel(this);
-    nm->setStyleSheet("color: #303030; font-size: 14px;");
+    nm->setStyleSheet("color: #303030; font-size: 12px;");
     nm->setText(fm.elidedText(mi.title, Qt::ElideMiddle, 480));
 
     trl->addWidget(nm);
@@ -135,15 +135,15 @@ BurstScreenshotsDialog::BurstScreenshotsDialog(const PlayItemInfo& pif)
     }
 
     QPushButton#SaveBtn:hover {
-        background: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#8ccfff", stop:1 "#4bb8ff");
+        background: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#5cb9f9", stop:1 "#2ca7f8");
         color: "#fff";
-        border: 1px solid rgba(0, 117, 243, 0.2);
+        border: 1px solid rgba(44, 167, 248, 0.2);
     }
 
     QPushButton#SaveBtn:pressed {
-        background: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#0b8cff", stop:1 "#0aa1ff");
+        background: qlineargradient(x1: 0, y1: 0 x2: 0, y2: 1, stop:0 "#1b8ad3", stop:1 "#2ca7f8");
         color: "#fff";
-        border: 1px solid rgba(29, 129, 255, 0.3);
+        border: 1px solid rgba(44, 167, 248, 0.3);
     }
 
     QPushButton#SaveBtn:disabled {

@@ -1,3 +1,9 @@
+/* GXDE movie palette (max 3 theme colors):
+ * 1. background  white
+ * 2. text        black / #606060
+ * 3. accent      #2ca7f8
+ * All text in this dialog uses one size: 12px
+ */
 dmr--MovieInfoDialog {
     qproperty-backgroundColor: white;
     qproperty-borderColor: rgba(0, 0, 0, 0.2);
@@ -16,14 +22,13 @@ dmr--MovieInfoDialog {
 #MovieInfoKey {
     border: 1px solid transparent;
     qproperty-alignment: AlignRight;
-    font-size: 11px;
+    font-size: 12px;
     color: #606060;
 }
 
 #MovieInfoValue {
     border: 1px solid transparent;
     qproperty-alignment: AlignLeft;
-    font-size: 11px;
+    font-size: 12px;
     color: #000000;
 }
-

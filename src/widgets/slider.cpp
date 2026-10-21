@@ -61,7 +61,7 @@ namespace dmr
     #MovieProgress[Hover="true"]::sub-page:horizontal {
         background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1,
             stop:0.00000  transparent,          stop:%1 transparent,
-            stop:%2  #2eacff,              stop:0.58333 #2eacff,
+            stop:%2  #2ca7f8,              stop:0.58333 #2ca7f8,
             stop:0.58334  rgba(0, 0, 0, 0.0), stop:1 rgba(0, 0, 0, 0.0)
         );
     }
@@ -90,13 +90,13 @@ namespace dmr
     #MovieProgress[Hover="true"]::sub-page:horizontal {
         background-color: qlineargradient(x1:0 y1:0, x2:0 y2:1,
             stop:0.00000  transparent,          stop:%1 transparent,
-            stop:%2  #2eacff,              stop:0.58333 #2eacff,
+            stop:%2  #2ca7f8,              stop:0.58333 #2ca7f8,
             stop:0.58334  rgba(0, 0, 0, 0.0), stop:1 rgba(0, 0, 0, 0.0)
         );
     }
     )";
 
-DMRSlider::DMRSlider(QWidget *parent): QSlider(parent) 
+DMRSlider::DMRSlider(QWidget *parent): QSlider(parent)
 {
     setTracking(false);
     setMouseTracking(true);

@@ -49,7 +49,7 @@ public:
         titleBackground = QBrush(linearGradient);
 
         borderShadowTop =  QColor(0.05 * 255,  0.05 * 255,  0.05 * 255);
-        borderBottom = QColor(255, 0, 0);
+        borderBottom = QColor(0, 0, 0);
     }
 
     QBrush          titleBackground;

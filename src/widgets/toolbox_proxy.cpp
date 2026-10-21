@@ -896,7 +896,11 @@ void ToolboxProxy::updateButtonStates()
     if (vis) {
         vis = _engine->playingMovieInfo().subs.size() > 0;
     }
-    //_subBtn->setVisible(vis);
+    _subBtn->setVisible(vis);
+
+    //the subtitle button changes the width of the right button group,
+    //so re-balance the time label to keep the play button centered
+    updateTimeLabel();
 }
 
 void ToolboxProxy::updateVolumeState()

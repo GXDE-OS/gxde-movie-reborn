@@ -150,24 +150,18 @@ QMenu* ActionFactory::mainContextMenu()
         { //sub menu
             auto *parent = menu;
             auto *menu = new QMenu(tr("Sound"));
-            {
-                auto *parent = menu;
-                auto *menu = new QMenu(tr("Channel"));
-                auto group = new QActionGroup(menu);
+            auto group = new QActionGroup(menu);
 
-                DEF_ACTION_CHECKED_GROUP(tr("Stereo"), ActionKind::Stereo, group);
-                DEF_ACTION_CHECKED_GROUP(tr("Left channel"), ActionKind::LeftChannel, group);
-                DEF_ACTION_CHECKED_GROUP(tr("Right channel"), ActionKind::RightChannel, group);
-                parent->addMenu(menu);
-            }
+            //NOTE: keep the sound menu flat (no nested submenu) so every
+            //entry is reachable within 3 clicks.
+            DEF_ACTION_CHECKED_GROUP(tr("Stereo"), ActionKind::Stereo, group);
+            DEF_ACTION_CHECKED_GROUP(tr("Left channel"), ActionKind::LeftChannel, group);
+            DEF_ACTION_CHECKED_GROUP(tr("Right channel"), ActionKind::RightChannel, group);
+            menu->addSeparator();
 
-            {
-                auto *parent = menu;
-                auto *menu = new QMenu(tr("Track"));
-                _tracksMenu = menu;
-                //DEF_ACTION(tr("Select Track"), ActionKind::SelectTrack);
-                parent->addMenu(menu);
-            }
+            //audio tracks are appended in place, right after the separator
+            _tracksMenu = menu;
+
             parent->addMenu(menu);
         }
 
@@ -176,22 +170,23 @@ QMenu* ActionFactory::mainContextMenu()
             auto *menu = new QMenu(tr("Subtitle"));
             DEF_ACTION(tr("Load"), ActionKind::LoadSubtitle);
             DEF_ACTION(tr("Online Search"), ActionKind::MatchOnlineSubtitle);
-            //DEF_ACTION(tr("Select"), ActionKind::SelectSubtitle);
-            {
-                auto *parent = menu;
-                auto *menu = new QMenu(tr("Select"));
-                _subtitleMenu = menu;
-                parent->addMenu(menu);
-            }
+            menu->addSeparator();
+
+            //subtitle tracks are inserted in place, before "Hide"
+            _subtitleMenu = menu;
             DEF_ACTION_CHECKED(tr("Hide"), ActionKind::HideSubtitle);
+            _subtitleHideAct = menu->actions().last();
 
-            {
-                auto *parent = menu;
-                auto *menu = new QMenu(tr("Encodings"));
-                auto group = new QActionGroup(menu);
+            parent->addMenu(menu);
+        }
 
-                //title <-> codepage
-                static QVector<QPair<QString, QString>> list = {
+        { //sub menu
+            auto *parent = menu;
+            auto *menu = new QMenu(tr("Encoding"));
+            auto group = new QActionGroup(menu);
+
+            //title <-> codepage
+            static QVector<QPair<QString, QString>> list = {
                     {"Auto", "auto"},
                     {"Universal (UTF-8)", "UTF-8"},
                     {"Universal (UTF-16)", "UTF-16"},
@@ -238,16 +233,13 @@ QMenu* ActionFactory::mainContextMenu()
                     {"Western European (LATIN-9)", "LATIN-9"}
                 };
 
-                auto p = list.begin();
-                while (p != list.end()) {
-                    DEF_ACTION_CHECKED_GROUP(p->first, ActionKind::ChangeSubCodepage, group);
-                    auto act = menu->actions().last();
-                    act->setProperty("args", QList<QVariant>() << p->second);
-                    if (p->second == "auto") menu->addSeparator();
-                    p++;
-                }
-
-                parent->addMenu(menu);
+            auto p = list.begin();
+            while (p != list.end()) {
+                DEF_ACTION_CHECKED_GROUP(p->first, ActionKind::ChangeSubCodepage, group);
+                auto act = menu->actions().last();
+                act->setProperty("args", QList<QVariant>() << p->second);
+                if (p->second == "auto") menu->addSeparator();
+                p++;
             }
 
             parent->addMenu(menu);
@@ -307,23 +299,44 @@ QList<QAction*> ActionFactory::findActionsByKind(ActionKind target_kd)
 void ActionFactory::updateMainActionsForMovie(const PlayingMovieInfo& pmf)
 {
     qDebug() << __func__;
+
+    //NOTE: the subtitle menu is flat now, so only drop the previously
+    //added track entries and keep the static ones (Load/Online Search/Hide).
     if (_subtitleMenu) {
         auto menu = _subtitleMenu;
-        menu->clear();
+        for (auto act: menu->actions()) {
+            if (actionKind(act) == ActionKind::SelectSubtitle) {
+                menu->removeAction(act);
+                delete act;
+            }
+        }
 
+        QList<QAction*> subs;
         auto group = new QActionGroup(menu); // mem leak ?
         for (int i = 0; i < pmf.subs.size(); i++) {
             DEF_ACTION_CHECKED_GROUP(pmf.subs[i]["title"].toString(), ActionKind::SelectSubtitle, group);
             auto act = menu->actions().last();
             act->setProperty("args", QList<QVariant>() << i);
+            subs.append(act);
         }
 
-        _subtitleMenu->setEnabled(pmf.subs.size() > 0);
+        //keep the tracks listed above "Hide"
+        if (_subtitleHideAct) {
+            for (auto act: subs) {
+                menu->removeAction(act);
+                menu->insertAction(_subtitleHideAct, act);
+            }
+        }
     }
 
-    if (_subtitleMenu) {
+    if (_tracksMenu) {
         auto menu = _tracksMenu;
-        menu->clear();
+        for (auto act: menu->actions()) {
+            if (actionKind(act) == ActionKind::SelectTrack) {
+                menu->removeAction(act);
+                delete act;
+            }
+        }
 
         auto group = new QActionGroup(menu); // mem leak ?
         for (int i = 0; i < pmf.audios.size(); i++) {
@@ -331,8 +344,6 @@ void ActionFactory::updateMainActionsForMovie(const PlayingMovieInfo& pmf)
             auto act = menu->actions().last();
             act->setProperty("args", QList<QVariant>() << i);
         }
-
-        _tracksMenu->setEnabled(pmf.audios.size() > 0);
     }
 }
 

@@ -37,7 +37,7 @@ LineEdit::LineEdit(QWidget* parent)
     setFixedHeight(20);
     setStyleSheet(R"(
 	QLineEdit {
-        font-size: 11px;
+        font-size: 12px;
 		border-radius: 3px;
 		background-color: #ffffff;
 		border: 1px solid rgba(0, 0, 0, 0.08);

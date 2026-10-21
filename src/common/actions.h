@@ -152,6 +152,7 @@ private:
     QMenu *_subtitleMenu {nullptr};
     QMenu *_tracksMenu {nullptr};
     QMenu *_playlistMenu {nullptr};
+    QAction *_subtitleHideAct {nullptr};
     QList<QAction*> _contextMenuActions;
 };
 
