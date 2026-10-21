@@ -1,7 +1,7 @@
 # Maintainer: CharOfString <root@charofstring.cc>
 pkgbase=gxde-movie-reborn-git
 pkgname=('gxde-movie-git' 'libgxmr-git' 'libgxmr-qt6-git')
-pkgver=4.0.7
+pkgver=4.0.8
 pkgrel=1
 pkgdesc='GXDE movie player and media preview libraries'
 arch=('x86_64' 'aarch64')

@@ -1,9 +1,14 @@
-gxde-movie-reborn (4.0.7) UNRELEASED; urgency=medium
+gxde-movie-reborn (4.0.8) UNRELEASED; urgency=medium
 
+  [ CharOfString ]
   * 修复音量条在窗口初始化时就出现
   * Build against both Qt 6.8 and Qt 6.10.
 
- -- CharOfString <root@charofstring.cc>  Sun, 06 Sep 2026 17:18:42 -0500
+  [ gfdgd_xi ]
+  * fix: 修复浅色模式窗口边框带黑边的问题
+  * feat: 调整窗口主题
+
+ -- gfdgd_xi <3025613752@qq.com>  Wed, 21 Oct 2026 22:35:04 +0800
 
 gxde-movie-reborn (4.0.5) UNRELEASED; urgency=medium
 
