@@ -807,8 +807,10 @@ void MainWindow::setupTitlebar()
 #else
     _titlebar->move(1, 1);
 #endif
-    _titlebar->setFixedHeight(30);
-    _titlebar->layout()->setContentsMargins(0, 0, 0, 0);
+    // 与 DMainWindow/DTitlebar 的默认标题栏高度保持一致 (DefaultTitlebarHeight)
+    _titlebar->setFixedHeight(40);
+    // 左边距与 DTitlebar 默认一致 (6px)，使图标位置和 DMainWindow 一致；右侧保持 0
+    _titlebar->layout()->setContentsMargins(6, 0, 0, 0);
     _titlebar->setFocusPolicy(Qt::NoFocus);
     if (!CompositingManager::get().composited()) {
         _titlebar->setAttribute(Qt::WA_NativeWindow);
@@ -816,20 +818,13 @@ void MainWindow::setupTitlebar()
     }
     _titlebar->setMenu(ActionFactory::get().titlebarMenu());
     {
+        // 与 DMainWindow/DTitlebar 的默认图标大小保持一致 (DefaultIconWidth/Height = 24)
         auto dpr = qApp->devicePixelRatio();
-        int w2 = 24 * dpr;
-        int w = 16 * dpr;
-        //hack: titlebar fixed icon size to (24x24), but we need (16x16)
+        int w = 24 * dpr;
         auto logo = QPixmap(":/resources/icons/logo.svg")
             .scaled(w, w, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         logo.setDevicePixelRatio(dpr);
-        QPixmap pm(w2, w2);
-        pm.setDevicePixelRatio(dpr);
-        pm.fill(Qt::transparent);
-        QPainter p(&pm);
-        p.drawPixmap((w2-w)/2, (w2-w)/2, logo);
-        p.end();
-        _titlebar->setIcon(pm);
+        _titlebar->setIcon(logo);
         _titlebar->setTitle(QString());
     }
 
