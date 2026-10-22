@@ -1,4 +1,4 @@
-gxde-movie-reborn (4.0.8) UNRELEASED; urgency=medium
+gxde-movie-reborn (4.0.9) UNRELEASED; urgency=medium
 
   [ CharOfString ]
   * 修复音量条在窗口初始化时就出现
@@ -7,8 +7,9 @@ gxde-movie-reborn (4.0.8) UNRELEASED; urgency=medium
   [ gfdgd_xi ]
   * fix: 修复浅色模式窗口边框带黑边的问题
   * feat: 调整窗口主题
+  * 调整标题栏宽度
 
- -- gfdgd_xi <3025613752@qq.com>  Wed, 21 Oct 2026 22:35:04 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Thu, 22 Oct 2026 09:04:39 +0800
 
 gxde-movie-reborn (4.0.5) UNRELEASED; urgency=medium
 
