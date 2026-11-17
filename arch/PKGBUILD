@@ -1,6 +1,6 @@
 # Maintainer: CharOfString <root@charofstring.cc>
-pkgbase=gxde-movie-reborn-git
-pkgname=('gxde-movie-git' 'libgxmr-git' 'libgxmr-qt6-git')
+pkgbase=gxde-movie-reborn
+pkgname=('gxde-movie' 'libgxmr' 'libgxmr-qt6')
 pkgver=4.0.9
 pkgrel=1
 pkgdesc='GXDE movie player and media preview libraries'
@@ -8,8 +8,8 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/GXDE-OS/gxde-movie-reborn"
 license=('GPL-3.0-or-later')
 makedepends=('git' 'cmake' 'ninja' 'pkgconf' 'qt5-tools' 'qt6-tools'
-             'qt5-base' 'qt5-svg' 'qt5-multimedia' 'qt5-x11extras' 'dtkcore-git' 'dtkwidget2-dev-git'
-             'qt6-base' 'dtk6core-git' 'dtk2widget-qt6-git'
+             'qt5-base' 'qt5-svg' 'qt5-multimedia' 'qt5-x11extras' 'gxde-dtkcore' 'dtkwidget2-dev'
+             'qt6-base' 'gxde-dtk6core' 'dtk2widget-qt6'
              'mpv' 'ffmpeg' 'ffmpegthumbnailer' 'libxcb' 'xcb-util' 'xcb-util-wm' 'libxtst'
              'libpulse' 'openssl' 'libdvdnav')
 source=()
@@ -44,33 +44,36 @@ _pick() {
   done
 }
 
-package_gxde-movie-git() {
+package_gxde-movie() {
   pkgdesc='GXDE movie player'
-  depends=('dtk2widget-qt6-git' 'dtk6core-git' 'qt6-base' 'mpv' 'ffmpeg' 'ffmpegthumbnailer'
+  depends=('dtk2widget-qt6' 'gxde-dtk6core' 'qt6-base' 'mpv' 'ffmpeg' 'ffmpegthumbnailer'
            'libdvdnav' 'libglvnd' 'libx11' 'libxcb' 'libxtst' 'libgcc' 'libstdc++' 'glibc')
-  provides=('gxde-movie')
-  conflicts=('gxde-movie')
+  provides=("gxde-movie-git=$pkgver")
+  conflicts=('gxde-movie-git')
+  replaces=('gxde-movie-git')
 
   _pick usr/bin usr/share
 }
 
-package_libgxmr-git() {
+package_libgxmr() {
   pkgdesc='GXDE media preview library (Qt5)'
-  depends=('dtkwidget2-git' 'dtkcore-git' 'qt5-base' 'qt5-x11extras' 'mpv' 'ffmpeg'
+  depends=('dtkwidget2' 'gxde-dtkcore' 'qt5-base' 'qt5-x11extras' 'mpv' 'ffmpeg'
            'ffmpegthumbnailer' 'libglvnd' 'libgcc' 'libstdc++' 'glibc')
-  provides=('libgxmr')
-  conflicts=('libgxmr')
+  provides=("libgxmr-git=$pkgver")
+  conflicts=('libgxmr-git')
+  replaces=('libgxmr-git')
 
   cd "$srcdir/root"
   _pick usr/include/libgxmr usr/lib/libgxmr.so* usr/lib/pkgconfig/libgxmr.pc
 }
 
-package_libgxmr-qt6-git() {
+package_libgxmr-qt6() {
   pkgdesc='GXDE media preview library (Qt6)'
-  depends=('dtk2widget-qt6-git' 'dtk6core-git' 'qt6-base' 'mpv' 'ffmpeg' 'ffmpegthumbnailer'
+  depends=('dtk2widget-qt6' 'gxde-dtk6core' 'qt6-base' 'mpv' 'ffmpeg' 'ffmpegthumbnailer'
            'libdvdnav' 'libglvnd' 'libgcc' 'libstdc++' 'glibc')
-  provides=('libgxmr-qt6')
-  conflicts=('libgxmr-qt6')
+  provides=("libgxmr-qt6-git=$pkgver")
+  conflicts=('libgxmr-qt6-git')
+  replaces=('libgxmr-qt6-git')
 
   cd "$srcdir/root"
   _pick usr/include/libgxmr-qt6 usr/lib/libgxmr-qt6.so* usr/lib/pkgconfig/libgxmr-qt6.pc
